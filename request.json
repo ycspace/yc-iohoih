@@ -5,7 +5,7 @@
     "theme": "blue",
     "uiStyle": "0",
     "bgMode": "dynamic",
-    "grid": "0",
+    "grid": "1",
     "btn": "round"
   },
   "customer": {
