@@ -20,7 +20,7 @@ const demo = p.has('demo') && !['0', 'false', 'off'].includes(p.get('demo'));
 if (p.has('reset')) { localStorage.removeItem('yc-sub'); localStorage.removeItem('yc-studio'); history.replaceState(null, '', location.pathname); }
 if (p.has('editor') && !demo && !localStorage.getItem('yc-sub')) localStorage.setItem('yc-sub', JSON.stringify({ plan: 'YC Space Annual', price: 32899, parts: 1, paidTotal: 32899, remaining: 0, payments: [{ ref: 'LOCAL', amount: 32899, manual: true, at: Date.now() }], customer: { name: 'Local Test', business: 'Local Test Business', email: '', phone: '' }, at: Date.now() }));
 const sub = JSON.parse(localStorage.getItem('yc-sub') || 'null');
-if (!demo && sub && sub.plan && !document.documentElement.classList.contains('space')) document.documentElement.classList.add('dash', 'paid');
+if (!demo && sub && sub.plan && window.top === window && !document.documentElement.classList.contains('space')) document.documentElement.classList.add('dash', 'paid');
 } catch {}
 })();
 </script>
@@ -30,11 +30,9 @@ if (!demo && sub && sub.plan && !document.documentElement.classList.contains('sp
 @property --gx{syntax:'<percentage>';inherits:true;initial-value:30%}
 @property --gy{syntax:'<percentage>';inherits:true;initial-value:20%}
 @property --ga{syntax:'<angle>';inherits:true;initial-value:180deg}
-   ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #131314; }
-        ::-webkit-scrollbar-thumb { background: #6fb08c; border-radius: 3px; }
-
-        html { scroll-behavior: smooth; }
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#131314}
+::-webkit-scrollbar-thumb{background:#6fb08c;border-radius:3px}
 
 :root{
 --bg:#0A0A0C; --text:#FAFAFF; --muted:#9a9aa2; --card:#14141873; --card2:#1c1c2273;
@@ -50,6 +48,11 @@ if (!demo && sub && sub.plan && !document.documentElement.classList.contains('sp
 --radius:10px; --r-ban:12px; --r-av:12px; --r-pill:6px; --r-btn:8px; --r-btn-sm:6px;
 --r-sm:8px; --r-cta:10px; --r-tab:8px; --r-ic:10px; --r-star:2px;
 }
+[data-btn="square"]{--r-btn:4px;--r-btn-sm:4px;--r-cta:4px}
+[data-btn="square"] .bb,[data-btn="square"] .bb.loading,[data-btn="square"] .ds-build,[data-btn="square"] #openEd,[data-btn="square"] .btn-outline,[data-btn="square"] .pt-more,[data-btn="square"] .more{border-radius:4px}
+[data-btn="outline"] .btn:not(.ghost),[data-btn="outline"] .cta,[data-btn="outline"] #openEd{background:transparent;color:var(--ac);border:2px solid var(--ac)}
+[data-btn="outline"] .btn:not(.ghost):hover,[data-btn="outline"] .cta:hover{background:var(--ac);color:var(--on);opacity:1}
+[data-btn="outline"] .btn[disabled]{border-color:var(--line)}
 [data-style="formal"] h1{letter-spacing:-.02em}
 [data-style="formal"] .box h3,
 [data-style="formal"] .cmp h3,
@@ -398,7 +401,6 @@ html.dash main.wrap,html.dash .bar,html.dash #studio{display:none!important}
 .pv-qr{display:flex;align-items:center;gap:12px}
 .pv-qr img{width:96px;height:96px;object-fit:cover;border-radius:var(--r-sm);background:#fff;flex-shrink:0}
 html:not(.dash) #app{display:none}
-.ds-home{margin:0;width:auto;min-height:38px;padding:0 16px;border-radius:28px;flex-shrink:0}
 #openEd{display:none}
 html.paid:not(.dash) #openEd{display:flex;position:fixed;right:16px;bottom:16px;z-index:70;width:auto;margin:0;min-height:50px;padding:0 22px;border-radius:28px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
 html.paid:not(.dash) #services,html.paid:not(.dash) #try,html.paid:not(.dash) .tabs a[href="#services"]{display:none}
@@ -407,11 +409,8 @@ html.paid:not(.dash) #services,html.paid:not(.dash) #try,html.paid:not(.dash) .t
 .ap-logo{width:38px;height:38px;border-radius:var(--r-sm);display:grid;place-items:center;font-weight:800;background:var(--ac);color:var(--on);flex-shrink:0;overflow:hidden}
 .ap-logo img{width:100%;height:100%;object-fit:cover}
 .ap-who{min-width:0;flex:1}
-
 .ap-who b{display:block;font-size:.95rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ap-who small{color:var(--muted);font-size:.74rem;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ds-pill{padding:6px 12px;border-radius:var(--r-pill);font-size:.76rem;font-weight:800;background:color-mix(in srgb,var(--ac) 18%,transparent);color:var(--ac);white-space:nowrap;flex-shrink:0}
-.ds-pill.due{background:#f59e0b26;color:#f59e0b}
 .ds-build{margin:0;width:auto;min-height:38px;padding:0 18px;border-radius:28px;flex-shrink:0}
 .pv-bar{display:flex;gap:2px;padding:3px;border-radius:var(--r-pill);background:color-mix(in srgb,var(--text) 8%,transparent);flex-shrink:0}
 .pv-bar button{min-height:30px;padding:0 14px;border-radius:var(--r-pill);font-size:.78rem;font-weight:700;color:var(--muted)}
@@ -420,11 +419,85 @@ html.paid:not(.dash) #services,html.paid:not(.dash) #try,html.paid:not(.dash) .t
 .ds-stage{height:50dvh;flex-shrink:0;padding:10px;background:color-mix(in srgb,var(--bg) 45%,transparent);display:flex;justify-content:center}
 .ds-panel{flex:1;min-height:0;overflow-y:auto;padding:4px 14px 40px;background:color-mix(in srgb,var(--bg) 84%,transparent);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-top:1px solid var(--line)}
 .pv-frame{position:relative;width:100%;max-width:390px;height:100%;max-height:900px;border-radius:28px;background:var(--bg);border:0px solid color-mix(in srgb,var(--text) 16%,transparent);overflow:hidden;transition:max-width .3s}
-.pv-frame.wide{max-width:100%;max-height:none;border-radius:0px;border-width:0px;}
+.pv-frame.wide{max-width:100%;max-height:none;border-radius:0px;border-width:0px}
 .pv-frame iframe{display:block;width:100%;height:100%;border:0;background:var(--bg)}
 .pv-load{position:absolute;left:50%;top:10px;transform:translate(-50%,-8px);padding:6px 14px;border-radius:var(--r-pill);background:var(--ac);color:var(--on);font-size:.76rem;font-weight:700;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:2;white-space:nowrap}
 .pv-load.show{opacity:1;transform:translate(-50%,0)}
 .pv-load.fail{inset:0;left:0;top:0;transform:none;border-radius:0;display:grid;place-items:center;text-align:center;padding:24px;background:var(--bg);color:var(--muted);white-space:normal;font-size:.9rem}
+.sync{display:flex;gap:6px;flex-shrink:0;cursor:pointer}
+.sy{display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:var(--r-pill);background:color-mix(in srgb,var(--text) 7%,transparent);font-size:.72rem;line-height:1.1;white-space:nowrap}
+.sy b{font-weight:800}
+.sy small{color:var(--muted);font-size:.72rem}
+.sy .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex-shrink:0}
+.sy .dot.ok{background:#22c55e}
+.sy .dot.warn{background:#f59e0b}
+.sy .dot.bad{background:#ef4444}
+.sy .dot.busy{background:#f59e0b;animation:sypulse 1s ease-in-out infinite}
+@keyframes sypulse{50%{opacity:.25}}
+.ds-panel.ob .ed-g:not(.cur){display:none}
+.ds-panel.ob #dsStatus .me-list,.ds-panel.ob #dsStatus [data-act=guide]{display:none}
+.ds-panel.ob .ed-g>summary{display:none}
+.ds-panel.ob .ed-g{border-bottom:0}
+.ob-bar{position:sticky;top:0;z-index:3;padding:14px 2px 12px;background:color-mix(in srgb,var(--bg) 94%,transparent)}
+.ob-bar small{color:var(--ac);font-weight:800;font-size:.75rem}
+.ob-bar b{display:block;font-size:1.25rem;letter-spacing:-.02em}
+.ob-bar p{color:var(--muted);font-size:.9rem;margin-top:2px}
+.ob-dots{display:flex;gap:4px;margin-top:12px}
+.ob-dots i{flex:1;height:4px;border-radius:4px;background:var(--line)}
+.ob-dots i.on{background:var(--ac)}
+.ob-foot{position:sticky;bottom:0;z-index:3;display:flex;gap:8px;align-items:center;padding:12px 2px;margin-top:12px;background:color-mix(in srgb,var(--bg) 94%,transparent);border-top:1px solid var(--line)}
+.ob-sp{flex:1}
+.ds-back{width:40px;height:40px;flex-shrink:0}
+#app{transition:opacity .3s}
+#app.out{opacity:0}
+body.fadein main.wrap{animation:homein .6s ease}
+@keyframes homein{from{opacity:0}to{opacity:1}}
+.ds-stage{position:relative}
+.ds-pill{position:absolute;left:12px;top:12px;z-index:6;padding:7px 14px;border-radius:var(--r-pill);font-size:.76rem;font-weight:800;background:color-mix(in srgb,var(--bg) 80%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:var(--ac);border:1px solid color-mix(in srgb,var(--ac) 40%,transparent);white-space:nowrap}
+.ds-pill.due{color:#f59e0b;border-color:#f59e0b88}
+.pay-pop{position:absolute;left:12px;top:56px;z-index:7;width:calc(100% - 24px);max-width:340px;max-height:calc(100% - 70px);overflow-y:auto;padding:16px;border-radius:var(--radius);background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:0 12px 40px rgba(0,0,0,.35);border:1px solid var(--line)}
+.pay-pop .ov-top{margin-bottom:12px}
+.pay-pop .ov-grid{margin-top:12px}
+.sync{position:absolute;left:14px;bottom:14px;z-index:6;display:flex;flex-direction:column;align-items:flex-start;gap:6px;cursor:pointer}
+.sy{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:var(--r-pill);background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 4px 18px rgba(0,0,0,.25);font-size:.72rem;line-height:1.1;white-space:nowrap}
+.hm{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.hm-card{width:100%;max-width:380px;padding:24px;border-radius:var(--radius);background:var(--bg);border:1px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.hm-card h3{font-size:1.2rem;letter-spacing:-.02em;margin-bottom:6px}
+.hm-card p{color:var(--muted);font-size:.92rem}
+.hm-act{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
+.hm-act .btn{margin:0;width:auto}
+.seo-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:var(--r-pill);background:color-mix(in srgb,var(--ac) 16%,transparent);color:var(--ac);font-size:.76rem;font-weight:800;margin:4px 0 12px}
+.seo-card{padding:14px;border-radius:var(--r-sm);background:color-mix(in srgb,var(--text) 5%,transparent);margin-bottom:12px}
+.seo-card small{display:block;color:var(--muted);font-size:.7rem;margin-bottom:4px}
+.seo-card b{display:block;color:#60a5fa;font-size:1rem;font-weight:600}
+.seo-card p{font-size:.85rem;color:var(--muted);margin-top:2px}
+.seo-ck{list-style:none;display:grid;gap:6px;margin-bottom:12px}
+.seo-ck li{display:flex;gap:8px;align-items:flex-start;font-size:.85rem}
+.seo-ck iconify-icon{color:var(--ac);font-size:18px;flex-shrink:0;margin-top:1px}
+.seo-steps{list-style:none;display:grid;gap:8px;margin-bottom:12px}
+.seo-steps li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;font-size:.85rem}
+.seo-steps li>span{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.75rem;background:color-mix(in srgb,var(--ac) 18%,transparent);color:var(--ac)}
+.seo-steps b{display:block}
+.seo-steps small{color:var(--muted);font-size:.8rem}
+.seo-art{padding:14px;border-radius:var(--r-sm);background:color-mix(in srgb,var(--text) 5%,transparent)}
+.seo-art small{display:block;color:var(--ac);font-weight:800;font-size:.72rem;margin-bottom:4px}
+.seo-art b{display:block;margin-bottom:6px}
+.seo-art p{font-size:.85rem;color:var(--muted)}
+.seo-art p+p{margin-top:6px}
+.pol-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.pol-n{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ac);color:var(--on);font-weight:800;font-size:.85rem;margin-bottom:8px}
+.pol-card p{font-size:.88rem;color:var(--muted);margin-top:4px}
+.pol-val{margin-top:14px;padding:22px;border:1px solid color-mix(in srgb,var(--ac) 50%,transparent);background:color-mix(in srgb,var(--ac) 8%,var(--card))}
+.pol-val h3{font-size:1.05rem;margin-bottom:4px}
+.pol-val>p{font-size:.92rem;color:var(--muted)}
+.pol-rows{list-style:none;margin:14px 0}
+.pol-rows li{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.pol-rows li:last-child{border-bottom:0}
+.pol-rows iconify-icon{color:var(--ac);font-size:20px;flex-shrink:0}
+.pol-rows b{margin-left:auto;color:var(--ac);font-size:.78rem;white-space:nowrap}
+.pol-close{font-weight:700;font-size:.95rem}
+html:not(.space) #article{display:none!important}
+.box p+p{margin-top:10px}
 .ds-panel .me-list{grid-template-columns:1fr!important}
 .ds-panel .ed-g{border-radius:0;background:transparent;border-bottom:1px solid var(--line)}
 .ds-panel .ed-g>summary{padding:14px 2px;font-size:.92rem}
@@ -436,7 +509,7 @@ html.paid:not(.dash) #services,html.paid:not(.dash) #try,html.paid:not(.dash) .t
 .qr-card img{width:180px;max-width:100%;border-radius:var(--r-sm);background:#fff;padding:8px}
 .qr-card h3{margin:0 0 4px}
 .qr-n{font-size:1.2rem;font-weight:800;margin-bottom:6px}
-html.space #gaps,html.space #journey,html.space #compare,html.space #sample,html.space #workflow,html.space #try,html.space #setup,html.space #included,html.space #pay,html.space #reviews,html.space #partners,html.space .bar .cta,html.space #studio,html.space #app,html.space #flow,html.space #qm,html.space #demoTag{display:none!important}
+html.space #polish,html.space #gaps,html.space #journey,html.space #compare,html.space #sample,html.space #workflow,html.space #try,html.space #setup,html.space #included,html.space #pay,html.space #reviews,html.space #partners,html.space .bar .cta,html.space #studio,html.space #app,html.space #flow,html.space #qm,html.space #demoTag{display:none!important}
 html.space .tabs a[href="#reviews"]{display:none}
 @media (orientation:portrait){
 .pv-bar{display:none}
@@ -739,6 +812,13 @@ background:color-mix(in srgb,var(--bg) 72%,transparent);
 <div class="card box" id="incBody"></div>
 </section>
 
+<section id="polish" hidden="">
+<h2 id="plTitle"></h2>
+<p class="lead muted" id="plLead"></p>
+<div class="pol-grid" id="plSteps"></div>
+<div class="card pol-val" id="plValue"></div>
+</section>
+
 <section id="pay">
 <h2>How YC Pay works</h2>
 <div class="card paybox" id="payBody"></div>
@@ -797,6 +877,11 @@ background:color-mix(in srgb,var(--bg) 72%,transparent);
 <div id="aboutBody"></div>
 </section>
 
+<section id="article" hidden="">
+<h2 id="arTitle"></h2>
+<div class="card box" id="arBody"></div>
+</section>
+
 <footer class="foot" id="contact">
 <div class="foot-name" id="fName"></div>
 <p class="muted" id="fTag"></p>
@@ -817,11 +902,12 @@ background:color-mix(in srgb,var(--bg) 72%,transparent);
 </div>
 
 <div id="app">
-<header class="ds-top"><div class="ap-logo" id="apLogo"></div><div class="ap-who"><b id="apName"></b><small id="apSub"></small></div><div class="pv-bar" id="pvBar"></div><span class="ds-pill" id="dsPill"></span><button type="button" class="btn sm ds-build" id="dsBuild"></button><button type="button" class="btn ghost sm ds-home" id="apHome"></button></header>
+<header class="ds-top"><button type="button" class="icon-btn ds-back" id="apHome"></button><div class="ap-logo" id="apLogo"></div><div class="ap-who"><b id="apName"></b><small id="apSub"></small></div><div class="pv-bar" id="pvBar"></div><button type="button" class="btn sm ds-build" id="dsBuild"></button></header>
 <div class="ds-body">
-<div class="ds-stage"><div class="pv-frame" id="pvFrame"><iframe id="pvFrameEl" title="Preview"></iframe><div class="pv-load" id="pvLoad" role="status"></div></div></div>
+<div class="ds-stage"><div class="pv-frame" id="pvFrame"><iframe id="pvFrameEl" title="Preview"></iframe><div class="pv-load" id="pvLoad" role="status"></div><button type="button" class="ds-pill" id="dsPill" aria-haspopup="dialog" aria-expanded="false"></button><div class="pay-pop" id="payPop" hidden="" role="dialog"></div></div><div class="sync" id="dsSync" role="button" tabindex="0"></div></div>
 <aside class="ds-panel" id="dsPanel" aria-label="Editor"></aside>
 </div>
+<div class="hm" id="hmModal" hidden=""><div class="hm-card" role="dialog" aria-modal="true" aria-labelledby="hmT"><h3 id="hmT"></h3><p id="hmP"></p><div class="hm-act"><button type="button" class="btn ghost sm" data-hm="no"></button><button type="button" class="btn sm" data-hm="yes"></button></div></div></div>
 <div class="ap-saved" id="apSaved" role="status"></div>
 </div>
 
@@ -947,6 +1033,7 @@ background:color-mix(in srgb,var(--bg) 72%,transparent);
 <script>
 window.YC_CONFIG = {
 mode: 'space',
+btn: 'round',
 theme: 'blue',
 uiStyle: 0,
 bgMode: 'dynamic',
@@ -967,7 +1054,7 @@ onPaid(info) {}
 </script>
 
 <script>
-window.YC_SPACE = {"name":"Arrrr","tagline":"Elevate for the bright future","headline":"","oneLiner":"","about":"sss","visit":"8PM","logo":"","banner":"","gallery":[],"services":[],"contact":[{"icon":"solar:phone-bold-duotone","label":"709592705","href":"tel:709592705"},{"icon":"solar:letter-bold-duotone","label":"ternai@duck.com","href":"mailto:ternai@duck.com"}],"pay":{"name":"","number":"","note":"","qr":""}};
+window.YC_SPACE = {"name":"Arrrr","tagline":"Elevate for the bright future","headline":"","oneLiner":"","about":"sss","visit":"8PM","logo":"","banner":"","gallery":[],"services":[],"contact":[{"icon":"solar:phone-bold-duotone","label":"709592705","href":"tel:709592705"},{"icon":"solar:letter-bold-duotone","label":"ternai@duck.com","href":"mailto:ternai@duck.com"}],"pay":{"name":"","number":"","note":"","qr":""},"article":{"title":"Arrrr: Elevate for the bright future","paras":["sss","You can find Arrrr at 8PM.","To order or ask a question, contact Arrrr at 709592705 and ternai@duck.com."],"generated":true}};
 window.YC_BRAND = {"spaceLabels":{"about":"About","visit":"Visit us","pay":"How to pay"}};
 </script>
 
@@ -986,11 +1073,11 @@ const fill = (id, text) => { const el = $(id); el.textContent = text ?? ''; el.h
 const query = (params) => Object.entries(params).filter(([, v]) => v).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&');
 
 const DEFAULTS = {
-theme: 'green', uiStyle: 0, bgMode: 'dynamic', bgGrid: false, seed: '',
+theme: 'green', uiStyle: 0, bgMode: 'dynamic', bgGrid: false, btn: 'round', seed: '',
 titleSync: true, cta: 1, reviewsPreview: 3,
 checkoutSteps: ['plan', 'details', 'design', 'questions', 'meeting', 'pay', 'done'],
 currency: '₱', currencyCode: 'PHP', locale: 'en-PH',
-payUrl: '', reviewFormId: '', questionsFormId: '', calUrl: '', onPaid: null, buildTokenUrl: '', buildOrg: ''
+payUrl: '', reviewFormId: '', questionsFormId: '', calUrl: '', onPaid: null, buildTokenUrl: '', buildOrg: '', preview: false
 };
 const S = { ...DEFAULTS, ...window.YC_CONFIG };
 const DEMO = (() => { const p = new URLSearchParams(location.search); return p.has('demo') && !['0', 'false', 'off'].includes(p.get('demo')); })();
@@ -1008,7 +1095,7 @@ mission: D.about || '', vision: D.visit || '', howItWorks: null, sample: null, g
 planIncludes: [], pay: null, workflow: [], reviews: [], partners: [], ctas: [], contact: arr(D.contact), gallery: arr(D.gallery),
 offers: arr(D.services).map((s) => ({ name: s.name, desc: s.desc, priceLabel: s.priceLabel, price: 0, buy: false })),
 seo: { title, description: brief, social: brief, summary: brief, keywords: [], author: D.name || '', url: '', locale: 'en_PH', robots: 'index, follow', category: 'LocalBusiness' },
-spaceData: D
+spaceData: D, article: D.article || null
 });
 }
 const SEO = B.seo || {};
@@ -1025,7 +1112,7 @@ ini: r.ini || String(r.name || '?').split(/\s+/).slice(0, 2).map((w) => w[0]).jo
 const money = (n) => `${S.currency}${Number(n || 0).toLocaleString(S.locale)}`;
 const priceText = (o) => o.priceLabel !== undefined ? o.priceLabel : `${o.from ? 'From ' : ''}${money(o.price)}${o.per ? ` / ${o.per}` : ''}`;
 
-const SECTIONS = ['home', 'gaps', 'journey', 'compare', 'sample', 'workflow', 'try', 'setup', 'included', 'pay', 'services', 'qr', 'reviews', 'gallery', 'partners', 'about', 'contact'];
+const SECTIONS = ['home', 'gaps', 'journey', 'compare', 'sample', 'workflow', 'try', 'setup', 'included', 'polish', 'pay', 'services', 'qr', 'reviews', 'gallery', 'partners', 'about', 'article', 'contact'];
 
 const ctaChoice = () => {
 const variants = arr(B.ctas);
@@ -1085,13 +1172,19 @@ const offerSchema = prices.length === 1
 ? { '@type': 'Offer', priceCurrency: S.currencyCode, price: String(prices[0]) }
 : { '@type': 'AggregateOffer', priceCurrency: S.currencyCode, lowPrice: String(Math.min(...prices)), highPrice: String(Math.max(...prices)), offerCount: String(prices.length) };
 const tel = (arr(B.contact).find((c) => /^tel:/.test(c.href || '')) || {}).href;
+const art = SPACE && B.article && arr(B.article.paras).length ? B.article : null;
 const schema = SPACE ? {
 '@context': 'https://schema.org',
+'@graph': [
+{
 '@type': 'LocalBusiness',
 name: B.name,
 description: summary,
 ...(B.logo && { logo: B.logo, image: B.logo }),
 ...(tel && { telephone: tel.slice(4) })
+},
+...(art ? [{ '@type': 'Article', headline: art.title, description: art.paras[0].slice(0, 200), articleBody: art.paras.join(' '), author: { '@type': 'Organization', name: B.name }, publisher: { '@type': 'Organization', name: B.name }, ...(B.logo && { image: B.logo }) }] : [])
+]
 } : {
 '@context': 'https://schema.org',
 '@type': 'SoftwareApplication',
@@ -1156,6 +1249,7 @@ let PALETTE = resolvePalette();
 const applyUiStyle = () => {
 const v = String(S.uiStyle).trim().toLowerCase();
 root.dataset.style = v === '1' || v === 'formal' || v === 'true' ? 'formal' : 'casual';
+root.dataset.btn = ['square', 'outline'].includes(S.btn) ? S.btn : 'round';
 };
 
 const hashString = (str) => {
@@ -1295,6 +1389,31 @@ $('sjList').innerHTML = steps.map((st) =>
 `<span class="sj-day">${esc(st.day)}</span>${st.by ? `<span class="wf-tag sj-by">${esc(st.by)}</span>` : ''}</div>` +
 `<b>${esc(st.title)}</b><p>${esc(st.text)}</p></div>`).join('');
 fill('sjEnd', s.closing);
+};
+
+const renderArticle = () => {
+if (!SPACE) return;
+const a = B.article;
+$('article').hidden = !(a && arr(a.paras).length);
+if (!a) return;
+fill('arTitle', a.title);
+$('arBody').innerHTML = arr(a.paras).map((p) => `<p>${esc(p)}</p>`).join('');
+};
+
+const renderPolish = () => {
+const P = B.polish;
+$('polish').hidden = !P;
+if (!P) return;
+fill('plTitle', P.title);
+fill('plLead', P.lead);
+$('plSteps').innerHTML = arr(P.steps).map(([a, b], i) => `<div class="card d3 pol-card"><span class="pol-n">${i + 1}</span><b>${esc(a)}</b><p>${esc(b)}</p></div>`).join('');
+const v = P.value || {}, o = offers[0] || {};
+const paid = Boolean(SUB && !DEMO);
+$('plValue').innerHTML = `<h3>${esc(v.title)}</h3><p>${esc(v.text)}</p>` +
+`<ul class="pol-rows">${arr(v.rows).map(([a, b]) => `<li>${icon('solar:check-circle-bold')}<span>${esc(a)}</span><b>${esc(b)}</b></li>`).join('')}</ul>` +
+`<p class="pol-close">${esc(String(v.close || '').replace('{price}', money(o.price)))}</p>` +
+(paid ? '' : `<button type="button" class="btn" id="plCta">${esc(o.btn || 'Order')} ${icon('solar:arrow-right-linear')}</button>`);
+if (!paid && $('plCta')) $('plCta').addEventListener('click', () => openFlow(0));
 };
 
 const renderQr = () => {
@@ -1708,6 +1827,12 @@ let buildState = '';
 const AP = () => B.app || {};
 let editorReady = false;
 let buildFail = '';
+let syncState = '';
+let syncTimer = 0;
+let syncFail = '';
+let localRev = 0;
+let localOk = true;
+let obStarted = false;
 let SRC = null;
 
 const buildSkeleton = () =>
@@ -1817,6 +1942,39 @@ const v = String(p || '').trim();
 return /^[\d.,]+$/.test(v) ? money(Number(v.replace(/,/g, ''))) : v;
 };
 
+const joinList = (list) => (list.length > 1 ? `${list.slice(0, -1).join(', ')} and ${list[list.length - 1]}` : list[0] || '');
+const makeArticle = (d) => {
+const name = (d.name || '').trim();
+if (!name) return null;
+const paras = [];
+const intro = d.about || d.oneLiner || d.headline;
+if (intro) paras.push(intro);
+const svc = arr(d.services);
+if (svc.length) {
+paras.push(`${name} offers ${joinList(svc.map((s) => s.name))}.`);
+const detail = svc.filter((s) => s.desc || s.priceLabel).map((s) => `${s.name}${s.priceLabel ? ` is ${s.priceLabel}` : ''}${s.desc ? `${s.priceLabel ? ', ' : ': '}${s.desc}` : ''}.`);
+if (detail.length) paras.push(detail.join(' '));
+}
+if (d.visit) paras.push(`You can find ${name} at ${d.visit.replace(/\n+/g, ', ')}.`);
+const reach = arr(d.contact).filter((c) => /^(tel|mailto):/.test(c.href || '')).map((c) => c.label);
+if (reach.length) paras.push(`To order or ask a question, contact ${name} at ${joinList(reach)}.`);
+if (!paras.length) return null;
+return { title: d.tagline ? `${name}: ${d.tagline}` : `About ${name}`, paras, generated: true };
+};
+
+const renderSeo = () => {
+const host = $('seoBody');
+if (!host || !SUB) return;
+const A = AP(), data = spaceData(inlineAssets()), art = data.article;
+const title = `${data.name}${data.tagline ? ` | ${data.tagline}` : ''}`;
+const desc = [data.oneLiner, data.about, data.name].find((x) => x && x.trim()).replace(/\s+/g, ' ').slice(0, 155);
+host.innerHTML = `<span class="seo-badge">${icon('solar:magic-stick-3-bold-duotone')}${esc(A.seoBadge)}</span>` +
+`<div class="seo-card"><small>${esc(A.seoGoogle)}</small><b>${esc(title)}</b><p>${esc(desc)}</p></div>` +
+`<ul class="seo-ck">${arr(A.seoChecks).map((x) => `<li>${icon('solar:check-circle-bold')}<span>${esc(x)}</span></li>`).join('')}</ul>` +
+`<ol class="seo-steps">${arr(A.seoSteps).map(([a, b], i) => `<li><span>${i + 1}</span><div><b>${esc(a)}</b><small>${esc(b)}</small></div></li>`).join('')}</ol>` +
+`<div class="seo-art"><small>${esc(A.seoArticle)}</small>${art ? `<b>${esc(art.title)}</b>${art.paras.map((p) => `<p>${esc(p)}</p>`).join('')}` : `<p>${esc(A.seoEmpty)}</p>`}</div>`;
+};
+
 const spaceData = (a) => {
 const s = site();
 const contact = [];
@@ -1825,7 +1983,7 @@ if (s.email.trim()) contact.push({ icon: 'solar:letter-bold-duotone', label: s.e
 if (s.facebook.trim()) contact.push({ icon: 'solar:link-bold-duotone', label: 'Facebook', href: cleanUrl(s.facebook) });
 if (s.instagram.trim()) contact.push({ icon: 'solar:link-bold-duotone', label: 'Instagram', href: cleanUrl(s.instagram) });
 if (s.address.trim()) contact.push({ icon: 'solar:map-point-bold-duotone', label: s.address.trim(), href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.address.trim())}` });
-return {
+const out = {
 name: B.name, tagline: B.tagline, headline: s.headline.trim(), oneLiner: s.oneLiner.trim(), about: s.about.trim(),
 visit: [s.address.trim(), s.hours.trim()].filter(Boolean).join('\n'),
 logo: a.logo, banner: a.banner, gallery: a.photos,
@@ -1833,6 +1991,8 @@ services: arr(s.services).filter((x) => x.title?.trim()).map((x) => ({ name: x.t
 contact,
 pay: { name: s.payName.trim(), number: s.payNumber.trim(), note: s.payNote.trim(), qr: a.qr }
 };
+out.article = makeArticle(out);
+return out;
 };
 
 const getSource = async () => {
@@ -1843,7 +2003,7 @@ return SRC;
 };
 
 const jsStr = (x) => String(x).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/[\r\n]+/g, ' ');
-const bakeSpace = (src, data) => {
+const bakeSpace = (src, data, preview) => {
 const cut = src.indexOf('</head>');
 const title = `${data.name}${data.tagline ? ` | ${data.tagline}` : ''}`;
 const head = src.slice(0, cut)
@@ -1855,9 +2015,10 @@ const head = src.slice(0, cut)
 .replace(/<script async src="https:\/\/tally\.so[^>]*><\/script>\s*/g, '');
 let rest = src.slice(cut);
 rest = rest
-.replace('window.YC_CONFIG = {', "window.YC_CONFIG = {\nmode: 'space',")
+.replace('window.YC_CONFIG = {', `window.YC_CONFIG = {\nmode: 'space',\nbtn: '${jsStr(design.btn)}',${preview ? '\npreview: true,' : ''}`)
 .replace(/theme: '[^']*',/, `theme: '${jsStr(design.theme)}',`)
 .replace(/uiStyle: [^,\n]+,/, `uiStyle: ${isFormal() ? 1 : 0},`)
+.replace(/bgGrid: [^,\n]+,/, `bgGrid: ${design.grid === '1'},`)
 .replace(/bgMode: '[^']*',/, `bgMode: '${design.bgMode === 'plain' ? 'plain' : 'dynamic'}',`)
 .replace(/seed: '[^']*',/, `seed: '${jsStr(`${BASE.brand}|${B.name}`)}',`)
 .replace(/^(buildTokenUrl|buildOrg|payUrl|reviewFormId|questionsFormId|calUrl): '[^']*',\n/gm, '')
@@ -1887,13 +2048,20 @@ frame.onload = () => {
 try { frame.contentWindow.scrollTo({ top: y, behavior: 'instant' }); } catch {}
 if (seq === pvSeq) load.classList.remove('show');
 };
-frame.srcdoc = bakeSpace(src, spaceData(inlineAssets()));
+frame.srcdoc = bakeSpace(src, spaceData(inlineAssets()), true);
 } catch {
 load.textContent = AP().pvFail || 'Open this page from its web address to see the preview.';
 load.classList.add('show', 'fail');
 }
 };
 const refreshPreview = () => { clearTimeout(pvTimer); pvTimer = setTimeout(runPreview, 450); };
+
+const hashOf = (value) => {
+const str = String(value);
+let h = 2166136261;
+for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+return `${(h >>> 0).toString(36)}-${str.length}`;
+};
 
 const buildFiles = async () => {
 const s = site(), pay = SUB.payments?.[0] || {}, files = [];
@@ -1910,28 +2078,67 @@ const data = spaceData({ logo, banner, qr, photos });
 let src;
 try { src = await getSource(); } catch { throw new Error('source'); }
 files.unshift(
-{ path: 'index.html', text: bakeSpace(src, data) },
+{ path: 'index.html', text: bakeSpace(src, data, false) },
 { path: 'site.json', text: JSON.stringify(data, null, 2) },
 {
 path: 'request.json',
 text: JSON.stringify({
 design: { ...design }, customer: { ...SUB.customer }, plan: SUB.plan, price: SUB.price, paid: SUB.paidTotal, parts: SUB.parts,
 sessionId: pay.ref || '', doneId: pay.doneId || '', manual: Boolean(pay.manual), meeting: SUB.meeting, questions: SUB.questions,
-requestedAt: new Date().toISOString()
+requestedAt: new Date(SUB.firstBuiltAt || Date.now()).toISOString()
 }, null, 2)
 }
 );
+files.forEach((f) => { f.h = hashOf(f.b64 || f.text); });
 return files;
 };
 
-const requestBuild = async () => {
-if (DEMO || !SUB || !S.buildTokenUrl || buildState === 'loading') return;
+const clock = (ms) => new Date(ms).toLocaleTimeString(S.locale, { hour: 'numeric', minute: '2-digit' });
+const paintSync = () => {
+const el = $('dsSync');
+if (!el || !SUB) return;
+const A = AP();
+let cloud;
+if (syncState === 'syncing') cloud = ['busy', A.sySyncing];
+else if (syncState === 'error') cloud = ['bad', A.syFail];
+else if (!SUB.builtAt) cloud = ['', A.syNone];
+else if (!navigator.onLine) cloud = ['warn', A.syOffline];
+else if (syncState === 'pending' || SUB.dirty) cloud = ['busy', A.syPending];
+else cloud = ['ok', `${A.syDone} ${clock(SUB.builtAt)}`];
+const local = localOk ? ['ok', A.syLocal] : ['bad', A.syFull];
+const chip = (k, [state, text], label) => `<span class="sy" data-k="${k}" title="${esc(`${label}: ${text}`)}"><i class="dot ${state}"></i><b>${esc(label)}</b><small>${esc(text)}</small></span>`;
+el.innerHTML = chip('local', local, A.syDevice) + chip('cloud', cloud, A.syCloud);
+};
+
+const queueSync = () => {
+if (DEMO || !SUB?.builtAt) { paintSync(); return; }
+clearTimeout(syncTimer);
+syncState = 'pending';
+paintSync();
+if (!navigator.onLine) return;
+syncTimer = setTimeout(() => pushSite(true), 3500);
+};
+
+const touch = () => {
+localRev++;
+localOk = saveSub({ dirty: true });
+queueSync();
+};
+
+const pushSite = async (auto) => {
+if (DEMO || !SUB || !S.buildTokenUrl || buildState === 'loading' || syncState === 'syncing') return;
+if (auto && !SUB.builtAt) return;
+clearTimeout(syncTimer);
+if (!navigator.onLine) { syncState = 'pending'; paintSync(); return; }
 const label = slugify(design.name.trim() !== BASE.name ? design.name : SUB.customer?.business) || 'space';
-buildState = 'loading';
-buildFail = '';
-renderBuild();
+const rev = localRev;
+syncState = 'syncing';
+syncFail = '';
+if (!auto) { buildState = 'loading'; buildFail = ''; renderBuild(); }
+paintSync();
 const started = Date.now();
 let stage = 'token';
+if (!SUB.firstBuiltAt) saveSub({ firstBuiltAt: Date.now() });
 try {
 const token = await getBuildToken();
 if (!token || typeof token !== 'string') throw new Error('no token');
@@ -1943,23 +2150,33 @@ saveSub({ build: repo });
 }
 stage = 'files';
 const message = SUB.builtAt ? 'Update from client' : 'First build';
+const done = { ...(SUB.synced || {}) };
 let ok = true;
 for (const f of await buildFiles()) {
-const done = await putFile(token, repo, f.path, f.b64 || f.text, message, Boolean(f.b64));
-if (!done) ok = false;
+if (done[f.path] === f.h) continue;
+if (await putFile(token, repo, f.path, f.b64 || f.text, message, Boolean(f.b64))) done[f.path] = f.h;
+else ok = false;
 }
+saveSub({ build: repo, synced: done });
 if (!ok) throw new Error('file write');
-await wait(Math.max(0, 900 - (Date.now() - started)));
+if (!auto) await wait(Math.max(0, 900 - (Date.now() - started)));
 buildState = '';
-saveSub({ build: repo, builtAt: Date.now() });
+syncState = 'ok';
+saveSub({ builtAt: Date.now(), dirty: localRev !== rev });
 } catch (err) {
-console.error('Build failed at', stage, err);
-buildState = 'error';
-buildFail = err?.message === 'source' ? 'source' : stage;
+console.error('Sync failed at', stage, err);
+syncFail = err?.message === 'source' ? 'source' : stage;
+syncState = 'error';
+if (!auto) { buildState = 'error'; buildFail = syncFail; }
+if (SUB.builtAt) syncTimer = setTimeout(() => pushSite(true), 30000);
 }
+paintSync();
 renderBuild();
 renderApp();
+if (syncState === 'ok' && SUB.dirty) queueSync();
 };
+
+const requestBuild = () => pushSite(false);
 
 const resizeImage = (file, max, quality) => new Promise((resolve, reject) => {
 const url = URL.createObjectURL(file);
@@ -2013,12 +2230,8 @@ list.push({ k: 'sent', ic: 'solar:rocket-2-bold-duotone', ok: Boolean(SUB.builtA
 return list.map((x) => ({ ...x, t: C[x.k] || [x.k, '', '', ''] }));
 };
 
-const renderStatus = () => {
-const due = Number(SUB.remaining) > 0;
-const items = checklist();
-const done = items.filter((x) => x.ok).length;
-const pct = Math.round((done / items.length) * 100);
-const pay = SUB.payments?.[0] || {};
+const renderPay = () => {
+const due = Number(SUB.remaining) > 0, pay = SUB.payments?.[0] || {};
 const stats = [
 [AP().statPlan, SUB.plan],
 [AP().statPaid, money(SUB.paidTotal)],
@@ -2026,6 +2239,25 @@ const stats = [
 [AP().statRef, pay.ref || '-'],
 [AP().statSince, SUB.at ? new Date(SUB.at).toLocaleDateString(S.locale, { dateStyle: 'medium' }) : '-']
 ];
+$('payPop').innerHTML =
+`<div class="ov-top"><div class="ov-ic${due ? ' due' : ''}">${icon(due ? 'solar:clock-circle-bold' : 'solar:check-circle-bold')}</div>` +
+`<div><h2>${esc(due ? AP().dueTitle : AP().paidTitle)}</h2><p>${esc(due ? String(AP().dueText || '').replace('{amount}', money(SUB.remaining)) : AP().paidText)}</p></div></div>` +
+(due ? `<button type="button" class="btn" style="margin-top:0" data-act="rest">${esc(String(AP().payNow || 'Pay {amount} now').replace('{amount}', money(SUB.remaining)))}</button>` : '') +
+`<div class="ov-grid">${stats.map(([k, v]) => `<div class="ov-stat"><small>${esc(k)}</small><b>${esc(v)}</b></div>`).join('')}</div>`;
+};
+
+const togglePay = (force) => {
+const pop = $('payPop');
+const open = force === undefined ? pop.hidden : force;
+if (open) renderPay();
+pop.hidden = !open;
+$('dsPill').setAttribute('aria-expanded', String(open));
+};
+
+const renderStatus = () => {
+const items = checklist();
+const done = items.filter((x) => x.ok).length;
+const pct = Math.round((done / items.length) * 100);
 const item = (x) => {
 const action = x.go ? `<button type="button" class="btn sm${x.ok ? ' ghost' : ''}" data-go="${x.go}">${esc(x.t[3])}</button>`
 : x.act ? (x.ok ? '' : `<button type="button" class="btn sm" data-act="${x.act}">${esc(x.t[3])}</button>`)
@@ -2035,13 +2267,9 @@ const status = x.ok ? (x.k === 'meeting' && SUB.meeting ? SUB.meeting : x.t[1]) 
 return `<div class="card me-item${x.ok ? ' ok' : ''}"><div class="sj-ic">${icon(x.ok ? 'solar:check-circle-bold' : x.ic)}</div><div class="me-t"><b>${esc(x.t[0])}</b><small>${esc(status)}</small></div>${action}</div>`;
 };
 $('dsStatus').innerHTML =
-`<div class="ov-hero"><div class="ov-top"><div class="ov-ic${due ? ' due' : ''}">${icon(due ? 'solar:clock-circle-bold' : 'solar:check-circle-bold')}</div>` +
-`<div><h2>${esc(due ? AP().dueTitle : AP().paidTitle)}</h2><p>${esc(due ? String(AP().dueText || '').replace('{amount}', money(SUB.remaining)) : AP().paidText)}</p></div></div>` +
-(due ? `<button type="button" class="btn" style="margin-top:0" data-act="rest">${esc(String(AP().payNow || 'Pay {amount} now').replace('{amount}', money(SUB.remaining)))}</button>` : '') +
-`<div><div class="ov-prog"><span>${esc(AP().progress)}</span><span>${done}/${items.length}</span></div><div class="ov-bar"><i style="width:${pct}%"></i></div></div></div>` +
-`<div class="ov-grid">${stats.map(([k, v]) => `<div class="ov-stat"><small>${esc(k)}</small><b>${esc(v)}</b></div>`).join('')}</div>` +
+`<div class="ov-prog" style="margin-top:6px"><span>${esc(AP().progress)}</span><span>${done}/${items.length}</span></div><div class="ov-bar"><i style="width:${pct}%"></i></div>` +
 `<div class="me-list" style="margin-top:14px">${items.map(item).join('')}</div>` +
-`<div class="me-list" style="margin-top:10px">${arr(B.setup).map(([label, title]) => `<div class="card d3"><small>${esc(label)}</small><b>${esc(title)}</b></div>`).join('')}</div>`;
+`<button type="button" class="btn sm ghost" data-act="guide" style="margin-top:12px">${esc(AP().guide || 'Setup guide')}</button>`;
 };
 
 const renderPublish = () => {
@@ -2050,6 +2278,7 @@ const row = (ok, title, note, go) => `<div class="${ok ? '' : 'miss'}">${icon(ok
 const n = arr(s.services).filter((x) => x.title?.trim()).length;
 $('bdList').innerHTML =
 row(true, 'index.html', AP().bdSite || '') +
+row(true, AP().secSeo || 'SEO', AP().seoRow || '') +
 row(Boolean(s.headline.trim() && s.about.trim()), AP().secContent || 'Content', s.about.trim() ? AP().bdIncluded : AP().bdMissing, 'content') +
 row(n > 0, AP().edServices || 'Services', String(n), 'services') +
 row(Boolean(s.logo), AP().uploadLogo || 'Logo', s.logo ? AP().bdIncluded : AP().bdMissing, 'brand') +
@@ -2066,6 +2295,7 @@ $('apSub').textContent = `${B.brand || ''} ${AP().dashboard || 'dashboard'}`.tri
 const pill = $('dsPill');
 pill.textContent = due ? AP().dueTitle : AP().paidTitle;
 pill.classList.toggle('due', due);
+if (!$('payPop').hidden) renderPay();
 document.title = `${AP().title || 'Dashboard'} | ${B.brand || ''}`;
 };
 
@@ -2085,10 +2315,13 @@ renderTop();
 renderStatus();
 renderPublish();
 renderChips();
+renderSeo();
 renderBuild();
+paintSync();
 };
 
 const openGroup = (id) => {
+if (ob.on) { const n = OB_ORDER.indexOf(id); if (n >= 0) { ob.i = n; renderOb(); } return; }
 const g = document.querySelector(`.ed-g[data-g="${id}"]`);
 if (!g) return;
 g.open = true;
@@ -2122,7 +2355,9 @@ const commit = (now) => {
 clearTimeout(commitTimer);
 const run = () => {
 const ok = saveSub({ site: SUB.site });
+localOk = ok;
 flash(ok ? AP().saved : AP().full, !ok);
+if (ok) touch();
 renderApp();
 };
 refreshPreview();
@@ -2137,7 +2372,7 @@ const group = (id, ic, title, body, open) =>
 `<details class="ed-g" data-g="${id}"${open ? ' open' : ''}><summary><span class="sj-ic">${icon(ic)}</span>${esc(title)}<span class="ed-s" data-st="${id}"></span></summary><div class="ed-b">${body}</div></details>`;
 const field = (f, label, type) => `<div class="fi"><label>${esc(label)}</label><input data-f="${f}" type="${type || 'text'}" autocomplete="off" aria-label="${esc(label)}"></div>`;
 const area = (f, label, max) => `<div class="fi"><label>${esc(label)}</label><textarea data-f="${f}" maxlength="${max}" aria-label="${esc(label)}"></textarea></div>`;
-$('dsPanel').innerHTML =
+$('dsPanel').innerHTML = '<div class="ob-bar" id="obBar" hidden></div>' +
 group('status', 'solar:chart-2-bold-duotone', AP().secStatus, '<div id="dsStatus"></div>', true) +
 group('brand', 'solar:pallete-2-bold-duotone', AP().edBrand, '<div id="edDesigner"></div><div class="up" id="upLogo"></div><div class="up" id="upBanner"></div>') +
 group('content', 'solar:document-text-bold-duotone', AP().secContent,
@@ -2149,8 +2384,11 @@ group('payment', 'solar:wallet-money-bold-duotone', AP().edPayment,
 field('payName', AP().fPayName) + field('payNumber', AP().fPayNumber) + field('payNote', AP().fPayNote) + '<div class="up" id="upQr"></div>') +
 group('contact', 'solar:phone-calling-bold-duotone', AP().edContact,
 field('phone', AP().fPhone, 'tel') + field('email', AP().fEmail, 'email') + field('facebook', AP().fFacebook) + field('instagram', AP().fInstagram)) +
-group('publish', 'solar:rocket-2-bold-duotone', AP().secPublish, `<p class="lead muted" style="margin-bottom:6px">${esc(AP().bdLead)}</p><div class="bd-list" id="bdList"></div><div class="me-build" id="apBuild"></div>`);
+group('seo', 'solar:magic-stick-3-bold-duotone', AP().secSeo, '<div id="seoBody"></div>') +
+group('publish', 'solar:rocket-2-bold-duotone', AP().secPublish, `<p class="lead muted" style="margin-bottom:6px">${esc(AP().bdLead)}</p><div class="bd-list" id="bdList"></div><div class="me-build" id="apBuild"></div>`) +
+'<div class="ob-foot" id="obFoot" hidden></div>';
 mountDesigner($('edDesigner'));
+renderSeo();
 const s = site();
 $('dsPanel').querySelectorAll('[data-f]').forEach((i) => { i.value = s[i.dataset.f] || ''; });
 paintMedia();
@@ -2167,6 +2405,15 @@ commit();
 }
 });
 $('dsPanel').addEventListener('click', (e) => {
+const o = e.target.closest('[data-ob]');
+if (o) {
+const k = o.dataset.ob;
+if (k === 'skip') endGuide();
+else if (k === 'back') { ob.i = Math.max(0, ob.i - 1); renderOb(); }
+else if (ob.i >= OB_ORDER.length - 1) endGuide();
+else { ob.i++; renderOb(); }
+return;
+}
 const a = e.target.closest('[data-act]');
 if (!a) return;
 const st = site(), i = Number(a.dataset.i), act = a.dataset.act;
@@ -2200,6 +2447,46 @@ commit(true);
 });
 };
 
+const OB_ORDER = ['status', 'brand', 'content', 'services', 'photos', 'payment', 'contact', 'seo', 'publish'];
+const OB_SCROLL = { seo: 'article', content: 'about', services: 'services', photos: 'gallery', payment: 'qr', contact: 'contact' };
+let ob = { on: false, i: 0 };
+
+const scrollPreview = (id) => {
+try {
+const d = $('pvFrameEl').contentDocument;
+const el = OB_SCROLL[id] ? d.getElementById(OB_SCROLL[id]) : null;
+if (el && !el.hidden) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+else d.defaultView.scrollTo({ top: 0, behavior: 'smooth' });
+} catch {}
+};
+
+const renderOb = () => {
+const panel = $('dsPanel');
+if (!panel || !editorReady) return;
+panel.classList.toggle('ob', ob.on);
+$('obBar').hidden = !ob.on;
+$('obFoot').hidden = !ob.on;
+if (!ob.on) return;
+const O = AP().ob || {}, id = OB_ORDER[ob.i], step = (O.steps || {})[id] || [id, ''];
+const last = ob.i === OB_ORDER.length - 1;
+panel.querySelectorAll('.ed-g').forEach((g) => { const cur = g.dataset.g === id; g.classList.toggle('cur', cur); g.open = cur; });
+$('obBar').innerHTML = `<small>${esc(String(O.step || 'Step {n} of {total}').replace('{n}', ob.i + 1).replace('{total}', OB_ORDER.length))}</small><b>${esc(step[0])}</b><p>${esc(step[1])}</p>` +
+`<div class="ob-dots">${OB_ORDER.map((_, n) => `<i class="${n <= ob.i ? 'on' : ''}"></i>`).join('')}</div>`;
+$('obFoot').innerHTML = `<button type="button" class="btn ghost sm" data-ob="skip">${esc(O.skip || 'Skip for now')}</button><span class="ob-sp"></span>` +
+(ob.i > 0 ? `<button type="button" class="btn ghost sm" data-ob="back">${esc(O.back || 'Back')}</button>` : '') +
+`<button type="button" class="btn sm" data-ob="next">${esc(last ? (O.finish || 'Finish') : (O.next || 'Next'))}</button>`;
+panel.scrollTop = 0;
+scrollPreview(id);
+};
+
+const startGuide = () => { ob = { on: true, i: 0 }; renderOb(); };
+const endGuide = () => {
+ob.on = false;
+saveSub({ onboarded: true });
+renderOb();
+openGroup('status');
+};
+
 const showDash = () => {
 if (!SUB || DEMO || SPACE) return;
 root.classList.add('dash', 'paid');
@@ -2208,16 +2495,50 @@ ensureEditor();
 renderApp();
 runPreview();
 safe(renderCta);
+if (!SUB.onboarded && !SUB.builtAt && !obStarted) { obStarted = true; startGuide(); }
+if (SUB.builtAt && SUB.dirty) queueSync();
 };
 
 const openDash = () => {
 if (!SUB) return;
+paintLook(design);
 showDash();
 window.scrollTo(0, 0);
 };
 
+const askHome = () => {
+const A = AP();
+$('hmT').textContent = A.hmTitle || 'Leave the editor?';
+$('hmP').textContent = (SUB?.builtAt ? A.hmBuilt : A.hmLocal) || '';
+const no = $('hmModal').querySelector('[data-hm=no]'), yes = $('hmModal').querySelector('[data-hm=yes]');
+no.textContent = A.hmNo || 'Stay';
+yes.textContent = SUB?.builtAt ? (A.hmYes || 'Yes, sync and leave') : (A.hmYesLocal || 'Yes, leave');
+yes.disabled = false;
+$('hmModal').hidden = false;
+};
+
+const leaveEditor = async () => {
+const yes = $('hmModal').querySelector('[data-hm=yes]');
+yes.disabled = true;
+if (SUB?.builtAt) {
+yes.textContent = AP().hmWorking || 'Syncing...';
+const limit = Date.now() + 20000;
+while (syncState === 'syncing' && Date.now() < limit) await wait(200);
+if (SUB.dirty || syncState !== 'ok') await pushSite(true);
+}
+togglePay(false);
+$('app').classList.add('out');
+await wait(320);
+$('hmModal').hidden = true;
+goHome();
+$('app').classList.remove('out');
+document.body.classList.add('fadein');
+setTimeout(() => document.body.classList.remove('fadein'), 700);
+};
+
 const goHome = () => {
 root.classList.remove('dash');
+paintLook(BASE);
 document.title = PAGE_TITLE;
 window.scrollTo(0, 0);
 activeSection = null;
@@ -2226,9 +2547,26 @@ setActiveSection('home');
 
 const initApp = () => {
 if (SPACE) return;
-onDesign = () => { if (SUB && editorReady) { renderTop(); refreshPreview(); } };
-$('apHome').textContent = AP().home || 'Home';
-$('apHome').addEventListener('click', goHome);
+onDesign = () => { if (SUB && editorReady) { renderTop(); refreshPreview(); touch(); } };
+addEventListener('online', () => { if (SUB?.builtAt && SUB.dirty) queueSync(); else paintSync(); });
+addEventListener('offline', paintSync);
+$('dsSync').addEventListener('click', () => { if (SUB && (!SUB.builtAt || syncState === 'error' || SUB.dirty)) pushSite(false); });
+$('apHome').innerHTML = icon('solar:arrow-left-linear');
+$('apHome').setAttribute('aria-label', AP().home || 'Home');
+$('apHome').title = AP().home || 'Home';
+$('apHome').addEventListener('click', askHome);
+$('hmModal').addEventListener('click', (e) => {
+const b = e.target.closest('[data-hm]');
+if (b) { if (b.dataset.hm === 'yes') leaveEditor(); else $('hmModal').hidden = true; return; }
+if (e.target === $('hmModal')) $('hmModal').hidden = true;
+});
+$('dsPill').addEventListener('click', () => togglePay());
+document.addEventListener('click', (e) => { if (!$('payPop').hidden && !e.target.closest('#payPop, #dsPill')) togglePay(false); });
+document.addEventListener('keydown', (e) => {
+if (e.key !== 'Escape') return;
+if (!$('hmModal').hidden) $('hmModal').hidden = true;
+else if (!$('payPop').hidden) togglePay(false);
+});
 $('openEd').textContent = AP().openEditor || 'Open my editor';
 $('openEd').addEventListener('click', openDash);
 $('pvBar').innerHTML = `<button type="button" data-w="phone" aria-pressed="true">${esc(AP().pvPhone || 'Phone')}</button><button type="button" data-w="wide" aria-pressed="false">${esc(AP().pvWide || 'Wide')}</button>`;
@@ -2242,10 +2580,11 @@ $('dsBuild').addEventListener('click', requestBuild);
 $('app').addEventListener('click', (e) => {
 const g = e.target.closest('[data-go]');
 if (g) { openGroup(g.dataset.go); return; }
-const a = e.target.closest('#dsStatus [data-act], #apBuild [data-act]');
+const a = e.target.closest('#dsStatus [data-act], #apBuild [data-act], #payPop [data-act]');
 if (!a) return;
 const act = a.dataset.act;
-if (act === 'rest') payRemaining();
+if (act === 'rest') { togglePay(false); payRemaining(); }
+if (act === 'guide') startGuide();
 if (act === 'questions') { Object.assign(flow.customer, SUB?.customer || {}); openQuestions(); }
 if (act === 'booked') { saveSub({ meeting: AP().bookedText || 'Booked' }); renderApp(); }
 if (act === 'build') requestBuild();
@@ -2420,7 +2759,7 @@ onQuestionsSubmitted();
 };
 
 const STUDIO_KEY = 'yc-studio';
-const BASE = { name: B.name || '', tagline: B.tagline || '', theme: String(S.theme), uiStyle: String(S.uiStyle), bgMode: S.bgMode };
+const BASE = { name: B.name || '', tagline: B.tagline || '', theme: String(S.theme), uiStyle: String(S.uiStyle), bgMode: S.bgMode, grid: S.bgGrid ? '1' : '0', btn: ['square', 'outline'].includes(S.btn) ? S.btn : 'round' };
 const design = { ...BASE };
 const ST = B.studio || {};
 const isFormal = () => /^(1|formal|true)$/i.test(design.uiStyle);
@@ -2438,12 +2777,14 @@ el.innerHTML = `<div class="sj-av">${esc(name.charAt(0).toUpperCase() || '?')}</
 `<span class="badge">${esc(ST.previewBadge || 'Preview')}</span>`;
 };
 
-const applyDesign = () => {
-S.theme = design.theme;
-S.uiStyle = design.uiStyle;
-S.bgMode = design.bgMode;
-B.name = design.name.trim() || BASE.name;
-B.tagline = design.tagline.trim() || BASE.tagline;
+const paintLook = (d) => {
+S.theme = d.theme;
+S.uiStyle = d.uiStyle;
+S.bgMode = d.bgMode;
+S.bgGrid = d.grid === '1';
+S.btn = d.btn;
+B.name = d.name.trim() || BASE.name;
+B.tagline = d.tagline.trim() || BASE.tagline;
 PALETTE = resolvePalette();
 LOOKS = buildLooks();
 applyUiStyle();
@@ -2451,6 +2792,10 @@ setMode(root.dataset.theme);
 safe(renderIdentity);
 safe(renderFooter);
 safe(buildHead);
+};
+
+const applyDesign = () => {
+paintLook(design);
 paintPreview();
 try { localStorage.setItem(STUDIO_KEY, JSON.stringify(design)); } catch {}
 onDesign();
@@ -2469,7 +2814,9 @@ host.innerHTML =
 swatches.map((k) => `<button type="button" data-t="${k}" aria-label="${k}" style="background:${PALETTES[k].ac[1]}"></button>`).join('') +
 '<input type="color" data-r="hex" aria-label="Custom color"></div>' +
 `<div class="lbl">${esc(ST.styleLabel || 'Style')}</div>${seg('style', [['1', ST.formal || 'Formal'], ['0', ST.casual || 'Casual']])}` +
-`<div class="lbl">${esc(ST.motionLabel || 'Background')}</div>${seg('motion', [['dynamic', ST.moving || 'Moving'], ['plain', ST.still || 'Still']])}`;
+`<div class="lbl">${esc(ST.motionLabel || 'Background')}</div>${seg('motion', [['dynamic', ST.moving || 'Moving'], ['plain', ST.still || 'Still']])}` +
+`<div class="lbl">${esc(ST.gridLabel || 'Grid')}</div>${seg('grid', [['1', ST.on || 'On'], ['0', ST.off || 'Off']])}` +
+`<div class="lbl">${esc(ST.btnLabel || 'Buttons')}</div>${seg('btn', [['round', ST.btnRound || 'Rounded'], ['square', ST.btnSquare || 'Square'], ['outline', ST.btnOutline || 'Outline']])}`;
 const q = (sel) => host.querySelector(sel);
 
 const sync = () => {
@@ -2478,6 +2825,8 @@ host.querySelectorAll('[data-t]').forEach((b) => b.setAttribute('aria-pressed', 
 if (isHex(key) && key.length === 7) q('[data-r="hex"]').value = key;
 q('[data-r="style"]').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String((b.dataset.v === '1') === isFormal())));
 q('[data-r="motion"]').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === (design.bgMode === 'plain' ? 'plain' : 'dynamic'))));
+q('[data-r="grid"]').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === design.grid)));
+q('[data-r="btn"]').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === design.btn)));
 host.querySelectorAll('[data-k]').forEach((i) => { if (i.value !== design[i.dataset.k]) i.value = design[i.dataset.k]; });
 };
 
@@ -2498,7 +2847,11 @@ if (sw) return change({ theme: sw.dataset.t });
 const st = e.target.closest('[data-r="style"] [data-v]');
 if (st) return change({ uiStyle: st.dataset.v });
 const mo = e.target.closest('[data-r="motion"] [data-v]');
-if (mo) change({ bgMode: mo.dataset.v });
+if (mo) return change({ bgMode: mo.dataset.v });
+const gr = e.target.closest('[data-r="grid"] [data-v]');
+if (gr) return change({ grid: gr.dataset.v });
+const bt = e.target.closest('[data-r="btn"] [data-v]');
+if (bt) change({ btn: bt.dataset.v });
 });
 syncers.push(sync);
 sync();
@@ -2735,6 +3088,8 @@ safe(renderAbout);
 safe(renderSample);
 safe(renderOffers);
 safe(renderQr);
+safe(renderArticle);
+safe(renderPolish);
 safe(renderCta);
 safe(renderFooter);
 safe(renderPartners);
@@ -2743,6 +3098,16 @@ if (!SPACE) safe(initFlow);
 safe(initApp);
 safe(renderCta);
 if (DEMO) { const d = (CHECKOUT.demo || {}).tag || 'Demo mode'; $('demoTag').textContent = d; $('demoTag').hidden = false; }
+if (SPACE && S.preview) {
+document.addEventListener('click', (e) => {
+const a = e.target.closest('a[href]');
+if (!a) return;
+e.preventDefault();
+const h = a.getAttribute('href') || '';
+if (h === '#') window.scrollTo({ top: 0, behavior: 'smooth' });
+else if (h[0] === '#') { const el = document.getElementById(decodeURIComponent(h.slice(1))); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
+}, true);
+}
 if (!SPACE) safe(initStudio);
 let galleryApi = { onKey() {} };
 safe(() => { galleryApi = initGallery(); });
