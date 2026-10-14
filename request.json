@@ -6,7 +6,7 @@
     "uiStyle": "0",
     "bgMode": "dynamic",
     "grid": "0",
-    "btn": "outline"
+    "btn": "round"
   },
   "customer": {
     "name": "oorohoit",
