@@ -1,0 +1,25 @@
+{
+  "design": {
+    "name": "IOHOIH",
+    "tagline": "Elevate for the bright future",
+    "theme": "gray",
+    "uiStyle": "0",
+    "bgMode": "dynamic"
+  },
+  "customer": {
+    "name": "oorohoit",
+    "business": "IOHOIH",
+    "email": "ternai@duck.com",
+    "phone": "709592705"
+  },
+  "plan": "YC Space Annual",
+  "price": 32899,
+  "paid": 10967,
+  "parts": 3,
+  "sessionId": "5041338427691",
+  "doneId": "4481830295",
+  "manual": true,
+  "meeting": "",
+  "questions": false,
+  "requestedAt": "2026-10-14T02:41:37.597Z"
+}
