@@ -3,9 +3,9 @@
     "name": "Arrrr",
     "tagline": "Elevate for the bright future",
     "theme": "blue",
-    "uiStyle": "0",
+    "uiStyle": "1",
     "bgMode": "dynamic",
-    "grid": "1",
+    "grid": "0",
     "btn": "round"
   },
   "customer": {
