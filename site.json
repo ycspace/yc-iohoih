@@ -7,7 +7,9 @@
   "visit": "8PM",
   "logo": "",
   "banner": "",
-  "gallery": [],
+  "gallery": [
+    "assets/photo-1.jpg"
+  ],
   "services": [],
   "contact": [
     {
