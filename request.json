@@ -4,7 +4,9 @@
     "tagline": "Elevate for the bright future",
     "theme": "blue",
     "uiStyle": "0",
-    "bgMode": "dynamic"
+    "bgMode": "dynamic",
+    "grid": "1",
+    "btn": "round"
   },
   "customer": {
     "name": "oorohoit",
@@ -21,5 +23,5 @@
   "manual": true,
   "meeting": "",
   "questions": false,
-  "requestedAt": "2026-10-14T05:17:59.086Z"
+  "requestedAt": "2026-10-14T10:34:30.708Z"
 }
