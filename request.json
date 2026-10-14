@@ -3,10 +3,10 @@
     "name": "Arrrr",
     "tagline": "Elevate for the bright future",
     "theme": "blue",
-    "uiStyle": "1",
+    "uiStyle": "0",
     "bgMode": "dynamic",
     "grid": "0",
-    "btn": "round"
+    "btn": "outline"
   },
   "customer": {
     "name": "oorohoit",
