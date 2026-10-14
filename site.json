@@ -17,8 +17,8 @@
     },
     {
       "icon": "solar:letter-bold-duotone",
-      "label": "ternai@duck.com",
-      "href": "mailto:ternai@duck.com"
+      "label": "sampl@duck.com",
+      "href": "mailto:sampl@duck.com"
     }
   ],
   "pay": {
@@ -32,7 +32,7 @@
     "paras": [
       "This is a sample info, Helping young entrepreneur in brand growth.",
       "You can find YanC Solutions at 8PM.",
-      "To order or ask a question, contact YanC Solutions at 709592705 and ternai@duck.com."
+      "To order or ask a question, contact YanC Solutions at 709592705 and sampl@duck.com."
     ],
     "generated": true
   }
