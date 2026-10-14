@@ -1,0 +1,30 @@
+{
+  "name": "IOHOIH",
+  "tagline": "Elevate for the bright future",
+  "headline": "",
+  "oneLiner": "",
+  "about": "",
+  "visit": "",
+  "logo": "",
+  "banner": "",
+  "gallery": [],
+  "services": [],
+  "contact": [
+    {
+      "icon": "solar:phone-bold-duotone",
+      "label": "709592705",
+      "href": "tel:709592705"
+    },
+    {
+      "icon": "solar:letter-bold-duotone",
+      "label": "ternai@duck.com",
+      "href": "mailto:ternai@duck.com"
+    }
+  ],
+  "pay": {
+    "name": "",
+    "number": "",
+    "note": "",
+    "qr": ""
+  }
+}
