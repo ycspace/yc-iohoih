@@ -17,11 +17,6 @@
   ],
   "contact": [
     {
-      "icon": "solar:phone-bold-duotone",
-      "label": "709592705",
-      "href": "tel:709592705"
-    },
-    {
       "icon": "solar:letter-bold-duotone",
       "label": "sample@duck.com",
       "href": "mailto:sample@duck.com"
@@ -40,7 +35,7 @@
       "YanC Solutions offers Sample service.",
       "Sample service is ₱500, Replace this with something you offer..",
       "You can find YanC Solutions at 8PM.",
-      "To order or ask a question, contact YanC Solutions at 709592705 and sample@duck.com."
+      "To order or ask a question, contact YanC Solutions at sample@duck.com."
     ],
     "generated": true
   }
