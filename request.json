@@ -7,7 +7,7 @@
     "bgMode": "dynamic",
     "grid": "1",
     "btn": "square",
-    "fx": "shine"
+    "fx": "bounce"
   },
   "customer": {
     "name": "oorohoit",
