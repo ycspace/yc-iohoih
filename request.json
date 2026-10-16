@@ -6,7 +6,8 @@
     "uiStyle": "0",
     "bgMode": "dynamic",
     "grid": "1",
-    "btn": "round"
+    "btn": "round",
+    "fx": "shine"
   },
   "customer": {
     "name": "oorohoit",
