@@ -2,13 +2,19 @@
   "name": "YanC Solutions",
   "tagline": "Elevate for the bright future",
   "headline": "Sample",
-  "oneLiner": "",
+  "oneLiner": "YC Space connects discovery, trust, services, booking, payment, payment proof, notifications, and reviews in one customer destination.",
   "about": "This is a sample info, Helping young entrepreneur in brand growth.",
   "visit": "8PM",
   "logo": "assets/logo.jpg",
   "banner": "",
   "gallery": [],
-  "services": [],
+  "services": [
+    {
+      "name": "Sample service",
+      "desc": "Replace this with something you offer.",
+      "priceLabel": "₱500"
+    }
+  ],
   "contact": [
     {
       "icon": "solar:phone-bold-duotone",
@@ -31,6 +37,8 @@
     "title": "YanC Solutions: Elevate for the bright future",
     "paras": [
       "This is a sample info, Helping young entrepreneur in brand growth.",
+      "YanC Solutions offers Sample service.",
+      "Sample service is ₱500, Replace this with something you offer..",
       "You can find YanC Solutions at 8PM.",
       "To order or ask a question, contact YanC Solutions at 709592705 and sample@duck.com."
     ],
