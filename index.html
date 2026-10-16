@@ -53,6 +53,15 @@ if (!demo && sub && sub.plan && window.top === window && !document.documentEleme
 [data-btn="outline"] .btn:not(.ghost),[data-btn="outline"] .cta,[data-btn="outline"] #openEd{background:transparent;color:var(--ac);border:2px solid var(--ac)}
 [data-btn="outline"] .btn:not(.ghost):hover,[data-btn="outline"] .cta:hover{background:var(--ac);color:var(--on);opacity:1}
 [data-btn="outline"] .btn[disabled]{border-color:var(--line)}
+@keyframes cbounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-7px)}60%{transform:translateY(0)}75%{transform:translateY(-3px)}}
+@keyframes cshine{0%{left:-60%}60%,100%{left:130%}}
+[data-fx="bounce"] :is(.cta,.btn.fx){animation:cbounce 1.8s ease-in-out infinite}
+[data-fx="bounce"] :is(.cta,.btn.fx):hover{animation-play-state:paused}
+[data-fx="shine"] :is(.cta,.btn.fx){position:relative;overflow:hidden}
+[data-fx="shine"] :is(.cta,.btn.fx)::after{content:'';position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:cshine 2.6s ease-in-out infinite;pointer-events:none}
+@media (prefers-reduced-motion:reduce){[data-fx] :is(.cta,.btn.fx){animation:none}[data-fx] :is(.cta,.btn.fx)::after{animation:none;display:none}}
+html.paid .band-cta,html.paid #plCta{display:none}
+.band-cta{margin-top:20px}
 [data-style="formal"] h1{letter-spacing:-.02em}
 [data-style="formal"] .box h3,
 [data-style="formal"] .cmp h3,
@@ -401,6 +410,7 @@ html.dash main.wrap,html.dash .bar,html.dash #studio{display:none!important}
 .pv-qr{display:flex;align-items:center;gap:12px}
 .pv-qr img{width:96px;height:96px;object-fit:cover;border-radius:var(--r-sm);background:#fff;flex-shrink:0}
 html:not(.dash) #app{display:none}
+html.dash #app{animation:homein .5s ease}
 #openEd{display:none}
 html.paid:not(.dash) #openEd{display:flex;position:fixed;right:16px;bottom:16px;z-index:70;width:auto;margin:0;min-height:50px;padding:0 22px;border-radius:28px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
 html.paid:not(.dash) #services,html.paid:not(.dash) #try,html.paid:not(.dash) .tabs a[href="#services"]{display:none}
@@ -453,9 +463,11 @@ html.paid:not(.dash) #services,html.paid:not(.dash) #try,html.paid:not(.dash) .t
 body.fadein main.wrap{animation:homein .6s ease}
 @keyframes homein{from{opacity:0}to{opacity:1}}
 .ds-stage{position:relative}
-.ds-pill{position:absolute;left:12px;top:12px;z-index:6;padding:7px 14px;border-radius:var(--r-pill);font-size:.76rem;font-weight:800;background:color-mix(in srgb,var(--bg) 80%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:var(--ac);border:1px solid color-mix(in srgb,var(--ac) 40%,transparent);white-space:nowrap}
-.ds-pill.due{color:#f59e0b;border-color:#f59e0b88}
-.pay-pop{position:absolute;left:12px;top:56px;z-index:7;width:calc(100% - 24px);max-width:340px;max-height:calc(100% - 70px);overflow-y:auto;padding:16px;border-radius:var(--radius);background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:0 12px 40px rgba(0,0,0,.35);border:1px solid var(--line)}
+.ds-stage.wide-on .sync{bottom:calc(var(--pvbar,0px) + 14px)}
+.ds-pill{position:absolute;right:12px;bottom:calc(var(--pvbar,0px) + 12px);z-index:6;display:flex;align-items:center;gap:6px;padding:9px 16px;border-radius:var(--r-pill);font-size:.82rem;font-weight:800;background:var(--ac);color:var(--on);border:0;box-shadow:0 6px 20px rgba(0,0,0,.3);white-space:nowrap}
+.ds-pill iconify-icon{font-size:18px}
+.ds-pill.due{background:#f59e0b;color:#1a1200}
+.pay-pop{position:absolute;right:12px;bottom:calc(var(--pvbar,0px) + 60px);z-index:7;width:calc(100% - 24px);max-width:340px;max-height:calc(100% - var(--pvbar,0px) - 80px);overflow-y:auto;padding:16px;border-radius:var(--radius);background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:0 12px 40px rgba(0,0,0,.35);border:1px solid var(--line)}
 .pay-pop .ov-top{margin-bottom:12px}
 .pay-pop .ov-grid{margin-top:12px}
 .sync{position:absolute;left:14px;bottom:14px;z-index:6;display:flex;flex-direction:column;align-items:flex-start;gap:6px;cursor:pointer}
@@ -509,9 +521,10 @@ html:not(.space) #article{display:none!important}
 .qr-card img{width:180px;max-width:100%;border-radius:var(--r-sm);background:#fff;padding:8px}
 .qr-card h3{margin:0 0 4px}
 .qr-n{font-size:1.2rem;font-weight:800;margin-bottom:6px}
-html.space #polish,html.space #gaps,html.space #journey,html.space #compare,html.space #sample,html.space #workflow,html.space #try,html.space #setup,html.space #included,html.space #pay,html.space #reviews,html.space #partners,html.space .bar .cta,html.space #studio,html.space #app,html.space #flow,html.space #qm,html.space #demoTag{display:none!important}
+html.space #polish,html.space #gaps,html.space #journey,html.space #compare,html.space #sample,html.space #workflow,html.space #try,html.space #setup,html.space #included,html.space #pay,html.space #reviews,html.space #partners,html.space #studio,html.space #app,html.space #flow,html.space #qm,html.space #demoTag{display:none!important}
 html.space .tabs a[href="#reviews"]{display:none}
 @media (orientation:portrait){
+.sync{bottom:calc(var(--pvbar,0px) + 14px)}
 .pv-bar{display:none}
 .ap-who small{display:none}
 .ds-top{gap:8px;padding:8px 10px}
@@ -719,6 +732,7 @@ background:color-mix(in srgb,var(--bg) 72%,transparent);
 }
 .bar-in{max-width:none;margin:0}
 .cta{display:none}
+html.space .bar .cta{display:flex}
 .tabs{width:auto}
 .tabs a{flex:0 0 auto;min-height:48px;padding:8px 14px}
 
@@ -737,8 +751,7 @@ background:color-mix(in srgb,var(--bg) 72%,transparent);
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
-<style>@keyframes _spin_1nqjn_1{0%{transform:rotate(0)}to{transform:rotate(360deg)}}@keyframes _wave_1nqjn_1{0%{transform:rotate(0)}50%{transform:rotate(20deg)}to{transform:rotate(0)}}@keyframes _heartBeat_1nqjn_1{0%{transform:scale(1)}50%{transform:scale(1.08)}to{transform:scale(1)}}@keyframes _flash_1nqjn_1{0%,50%,to{opacity:1}25%,75%{opacity:.2}}@keyframes _bounce_1nqjn_1{0%,20%,53%,to{transform:translate(0,0)}40%,43%{transform:translateY(-30px)scaleY(1.1)}70%{transform:translateY(-15px)scaleY(1.05)}80%{transform:translate(0,0)scaleY(.95)}90%{transform:translateY(-4px)scaleY(1.02)}}@keyframes _rubberBand_1nqjn_1{0%{transform:scale(1)}30%{transform:scale(1.25,.75)}40%{transform:scale(.75,1.25)}50%{transform:scale(1.15,.85)}65%{transform:scale(.95,1.05)}75%{transform:scale(1.05,.95)}to{transform:scale(1)}}@keyframes _headShake_1nqjn_1{0%{transform:translate(0)}6.5%{transform:translate(-6px)rotateY(-9deg)}18.5%{transform:translate(5px)rotateY(7deg)}31.5%{transform:translate(-3px)rotateY(-5deg)}43.5%{transform:translate(2px)rotateY(3deg)}50%{transform:translate(0)}}@keyframes _tada_1nqjn_1{0%{transform:scale(1)}10%,20%{transform:scale3d(.9,.9,.9)rotate(-3deg)}30%,50%,70%,90%{transform:scale3d(1.1,1.1,1.1)rotate(3deg)}40%,60%,80%{transform:scale3d(1.1,1.1,1.1)rotate(-3deg)}to{transform:scale(1)}}._overlay_1nqjn_157{z-index:1000000006;background-color:#0f0f0f99;justify-content:center;align-items:center;display:flex;position:fixed;inset:0}._layoutDefault_1nqjn_170{z-index:2147483000;opacity:0;background-color:#0000;border-radius:5px;width:auto;max-width:95vw;height:auto;display:flex;position:fixed;bottom:20px;right:20px;box-shadow:0 0 0 1px #0f0f0f0d,0 3px 6px #0f0f0f1a,0 9px 24px #0f0f0f33}._layoutModal_1nqjn_188{z-index:2147483000;opacity:0;background-color:#0000;border-radius:5px;width:700px;max-width:95vw;height:auto;display:flex;position:relative;box-shadow:0 0 0 1px #0f0f0f0d,0 3px 6px #0f0f0f1a,0 9px 24px #0f0f0f33}._popupContainer_1nqjn_204{border-radius:5px;width:100%;display:flex;overflow-y:auto}._popupContainer_1nqjn_204 iframe{border-radius:5px;max-height:95vh}._loadingIndicator_1nqjn_216{z-index:2147483000;color:#444;background-color:#f5f5f5;border-radius:50%;justify-content:center;align-items:center;width:50px;height:50px;display:inline-flex;position:absolute}._loadingIndicatorNoOverlay_1nqjn_229{position:fixed;bottom:10px;right:10px}._loadingIndicator_1nqjn_216 svg{width:20px;height:20px;animation:1.618s linear infinite _spin_1nqjn_1}._emoji_1nqjn_241{font-size:42px;line-height:1;display:inline-block;position:absolute;top:-21px;left:-21px}._animate__wave_1nqjn_250{animation:1s ease-in-out 20 _wave_1nqjn_1}._animate__heart-beat_1nqjn_254{animation:1.3s ease-in-out 20 _heartBeat_1nqjn_1}._animate__flash_1nqjn_258{animation:2.5s 20 _flash_1nqjn_1}._animate__bounce_1nqjn_262{transform-origin:bottom;animation:1.5s 20 _bounce_1nqjn_1}._animate__rubber-band_1nqjn_267{animation:1.5s 20 _rubberBand_1nqjn_1}._animate__head-shake_1nqjn_271{animation:1.5s ease-in-out 20 _headShake_1nqjn_1}._animate__tada_1nqjn_275{animation:1.5s 20 _tada_1nqjn_1}._animate__spin_1nqjn_279{animation:1.618s linear 20 _spin_1nqjn_1}@media (height<=1000px){._popupContainer_1nqjn_204 iframe{max-height:85vh}}@media (width<=576px){._popupContainer_1nqjn_204 iframe{max-height:70vh}._layoutDefault_1nqjn_170,._layoutModal_1nqjn_188{max-width:calc(100% - 40px)}}
-/*$vite$:1*/</style></head>
+</head>
 <body>
 
 <main class="wrap">
@@ -902,7 +915,7 @@ background:color-mix(in srgb,var(--bg) 72%,transparent);
 </div>
 
 <div id="app">
-<header class="ds-top"><button type="button" class="icon-btn ds-back" id="apHome"></button><div class="ap-logo" id="apLogo"></div><div class="ap-who"><b id="apName"></b><small id="apSub"></small></div><div class="pv-bar" id="pvBar"></div><button type="button" class="btn sm ds-build" id="dsBuild"></button></header>
+<header class="ds-top"><button type="button" class="icon-btn ds-back" id="apHome"></button><div class="ap-logo" id="apLogo"></div><div class="ap-who"><b id="apName"></b><small id="apSub"></small></div><div class="pv-bar" id="pvBar"></div><button type="button" class="btn sm fx ds-build" id="dsBuild"></button></header>
 <div class="ds-body">
 <div class="ds-stage"><div class="pv-frame" id="pvFrame"><iframe id="pvFrameEl" title="Preview"></iframe><div class="pv-load" id="pvLoad" role="status"></div><button type="button" class="ds-pill" id="dsPill" aria-haspopup="dialog" aria-expanded="false"></button><div class="pay-pop" id="payPop" hidden="" role="dialog"></div></div><div class="sync" id="dsSync" role="button" tabindex="0"></div></div>
 <aside class="ds-panel" id="dsPanel" aria-label="Editor"></aside>
@@ -911,7 +924,7 @@ background:color-mix(in srgb,var(--bg) 72%,transparent);
 <div class="ap-saved" id="apSaved" role="status"></div>
 </div>
 
-<button type="button" class="btn" id="openEd"></button>
+<button type="button" class="btn fx" id="openEd"></button>
 <div id="demoTag" hidden=""></div>
 
 <aside id="studio" aria-label="Studio" aria-hidden="true">
@@ -1034,6 +1047,7 @@ background:color-mix(in srgb,var(--bg) 72%,transparent);
 window.YC_CONFIG = {
 mode: 'space',
 btn: 'round',
+fx: 'shine',
 theme: 'blue',
 uiStyle: 0,
 bgMode: 'dynamic',
@@ -1054,8 +1068,8 @@ onPaid(info) {}
 </script>
 
 <script>
-window.YC_SPACE = {"name":"YanC Solutions","tagline":"Elevate for the bright future","headline":"Sample","oneLiner":"","about":"This is a sample info, Helping young entrepreneur in brand growth.","visit":"8PM","logo":"assets/logo.jpg","banner":"","gallery":[],"services":[],"contact":[{"icon":"solar:phone-bold-duotone","label":"709592705","href":"tel:709592705"},{"icon":"solar:letter-bold-duotone","label":"sample@duck.com","href":"mailto:sample@duck.com"}],"pay":{"name":"","number":"","note":"","qr":""},"article":{"title":"YanC Solutions: Elevate for the bright future","paras":["This is a sample info, Helping young entrepreneur in brand growth.","You can find YanC Solutions at 8PM.","To order or ask a question, contact YanC Solutions at 709592705 and sample@duck.com."],"generated":true}};
-window.YC_BRAND = {"spaceLabels":{"about":"About","visit":"Visit us","pay":"How to pay"}};
+window.YC_SPACE = {"name":"YanC Solutions","tagline":"Elevate for the bright future","headline":"Sample","oneLiner":"YC Space connects discovery, trust, services, booking, payment, payment proof, notifications, and reviews in one customer destination.","about":"This is a sample info, Helping young entrepreneur in brand growth.","visit":"8PM","logo":"assets/logo.jpg","banner":"","gallery":[],"services":[{"name":"Sample service","desc":"Replace this with something you offer.","priceLabel":"₱500"}],"contact":[{"icon":"solar:phone-bold-duotone","label":"709592705","href":"tel:709592705"},{"icon":"solar:letter-bold-duotone","label":"sample@duck.com","href":"mailto:sample@duck.com"}],"pay":{"name":"","number":"","note":"","qr":""},"article":{"title":"YanC Solutions: Elevate for the bright future","paras":["This is a sample info, Helping young entrepreneur in brand growth.","YanC Solutions offers Sample service.","Sample service is ₱500, Replace this with something you offer..","You can find YanC Solutions at 8PM.","To order or ask a question, contact YanC Solutions at 709592705 and sample@duck.com."],"generated":true}};
+window.YC_BRAND = {"spaceLabels":{"about":"About","visit":"Visit us","pay":"How to pay","call":"Call us","email":"Email us","message":"Message us"}};
 </script>
 
 <script>
@@ -1073,7 +1087,7 @@ const fill = (id, text) => { const el = $(id); el.textContent = text ?? ''; el.h
 const query = (params) => Object.entries(params).filter(([, v]) => v).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&');
 
 const DEFAULTS = {
-theme: 'green', uiStyle: 0, bgMode: 'dynamic', bgGrid: false, btn: 'round', seed: '',
+theme: 'green', uiStyle: 0, bgMode: 'dynamic', bgGrid: false, btn: 'round', fx: 'shine', seed: '',
 titleSync: true, cta: 1, reviewsPreview: 3,
 checkoutSteps: ['plan', 'details', 'design', 'questions', 'meeting', 'pay', 'done'],
 currency: '₱', currencyCode: 'PHP', locale: 'en-PH',
@@ -1250,6 +1264,7 @@ const applyUiStyle = () => {
 const v = String(S.uiStyle).trim().toLowerCase();
 root.dataset.style = v === '1' || v === 'formal' || v === 'true' ? 'formal' : 'casual';
 root.dataset.btn = ['square', 'outline'].includes(S.btn) ? S.btn : 'round';
+root.dataset.fx = ['none', 'bounce', 'shine'].includes(S.fx) ? S.fx : 'shine';
 };
 
 const hashString = (str) => {
@@ -1412,8 +1427,24 @@ const paid = Boolean(SUB && !DEMO);
 $('plValue').innerHTML = `<h3>${esc(v.title)}</h3><p>${esc(v.text)}</p>` +
 `<ul class="pol-rows">${arr(v.rows).map(([a, b]) => `<li>${icon('solar:check-circle-bold')}<span>${esc(a)}</span><b>${esc(b)}</b></li>`).join('')}</ul>` +
 `<p class="pol-close">${esc(String(v.close || '').replace('{price}', money(o.price)))}</p>` +
-(paid ? '' : `<button type="button" class="btn" id="plCta">${esc(o.btn || 'Order')} ${icon('solar:arrow-right-linear')}</button>`);
+(paid ? '' : `<button type="button" class="btn fx" id="plCta">${esc(o.btn || 'Order')} ${icon('solar:arrow-right-linear')}</button>`);
 if (!paid && $('plCta')) $('plCta').addEventListener('click', () => openFlow(0));
+};
+
+const renderBands = () => {
+if (SPACE) return;
+const text = (arr(B.ctas)[0] || {}).text || 'Get started';
+['sample', 'setup', 'included'].forEach((id) => {
+const sec = $(id);
+if (!sec) return;
+sec.querySelector('.band-cta')?.remove();
+const b = document.createElement('button');
+b.type = 'button';
+b.className = 'btn fx band-cta';
+b.innerHTML = `${esc(text)} ${icon('solar:arrow-right-linear')}`;
+b.addEventListener('click', () => openFlow(0));
+sec.appendChild(b);
+});
 };
 
 const renderQr = () => {
@@ -1445,7 +1476,7 @@ const split = arr(o.split).length ? `<p class="muted fine">Or split it into ${o.
 return `<div class="card plan">${o.badge ? `<span class="badge">${esc(o.badge)}</span>` : ''}` +
 `<h3>${esc(o.name)}</h3><div class="pbig">${money(o.price)}${o.per ? ` <small>/ ${esc(o.per)}</small>` : ''}</div>${averaged}${saved}${split}` +
 `<p class="desc">${esc(o.desc)}</p>${B.ready ? `<p class="note">${esc(B.ready)}</p>` : ''}` +
-`<button class="btn" data-o="${i}">${esc(o.btn || 'Order')}</button></div>`;
+`<button class="btn fx" data-o="${i}">${esc(o.btn || 'Order')}</button></div>`;
 };
 const compact = (o, i) =>
 `<div class="card svc${o.buy === false ? ' ref' : ''}"><div><h3>${esc(o.name)}</h3><p>${esc(o.desc)}</p><div class="price">${priceText(o)}</div></div>` +
@@ -1459,7 +1490,16 @@ if (btn) openFlow(Number(btn.dataset.o));
 };
 
 const renderCta = () => {
-if (SPACE) { $('cta').hidden = true; return; }
+if (SPACE) {
+const c = arr(B.contact).find((x) => /^(tel|mailto):/.test(x.href || '')) || arr(B.contact)[0];
+if (!c) { $('cta').hidden = true; return; }
+const L = B.spaceLabels || {};
+const label = /^tel:/.test(c.href) ? (L.call || 'Call us') : /^mailto:/.test(c.href) ? (L.email || 'Email us') : (L.message || 'Message us');
+$('cta').innerHTML = `${esc(label)} ${icon('solar:arrow-right-linear')}`;
+$('cta').hidden = false;
+$('cta').onclick = () => { if (S.preview) return; if (/^https?:/.test(c.href)) window.open(c.href, '_blank', 'noopener'); else location.href = c.href; };
+return;
+}
 const cta = ctaChoice();
 if (SUB && !DEMO) {
 $('cta').innerHTML = `${esc(AP().openEditor || 'Open my editor')} ${icon('solar:arrow-right-linear')}`;
@@ -1922,12 +1962,25 @@ await wait(700);
 return false;
 };
 
+const templateSite = () => ({
+headline: B.headline || '', oneLiner: B.oneLiner || '', about: B.mission || '', phone: SUB?.customer?.phone || '', email: SUB?.customer?.email || '', address: '', hours: '',
+facebook: '', instagram: '', services: [{ title: (AP().tplService || ['Sample service'])[0], price: '500', text: (AP().tplService || ['', '', 'Replace this with something you offer.'])[2] }],
+photos: [], logo: B.logo || '', banner: B.banner || '', payName: '', payNumber: '', payNote: '', payQr: ''
+});
 const emptySite = () => ({
 headline: '', oneLiner: '', about: '', phone: SUB?.customer?.phone || '', email: SUB?.customer?.email || '', address: '', hours: '',
 facebook: '', instagram: '', services: [], photos: [], logo: '', banner: '', payName: '', payNumber: '', payNote: '', payQr: ''
 });
 const site = () => {
 SUB.site = { ...emptySite(), ...(SUB.site || {}) };
+if (!SUB.seeded) {
+const T = templateSite();
+Object.keys(T).forEach((k) => {
+const v = SUB.site[k];
+if (Array.isArray(T[k]) ? !(Array.isArray(v) && v.length) : !String(v || '').trim()) SUB.site[k] = T[k];
+});
+saveSub({ site: SUB.site, seeded: true });
+}
 ['services', 'photos'].forEach((k) => { if (!Array.isArray(SUB.site[k])) SUB.site[k] = []; });
 return SUB.site;
 };
@@ -2015,7 +2068,8 @@ const head = src.slice(0, cut)
 .replace(/<script async src="https:\/\/tally\.so[^>]*><\/script>\s*/g, '');
 let rest = src.slice(cut);
 rest = rest
-.replace('window.YC_CONFIG = {', `window.YC_CONFIG = {\nmode: 'space',\nbtn: '${jsStr(design.btn)}',${preview ? '\npreview: true,' : ''}`)
+.replace(/^fx: '[^']*',\n/m, '')
+.replace('window.YC_CONFIG = {', `window.YC_CONFIG = {\nmode: 'space',\nbtn: '${jsStr(design.btn)}',\nfx: '${jsStr(design.fx)}',${preview ? '\npreview: true,' : ''}`)
 .replace(/theme: '[^']*',/, `theme: '${jsStr(design.theme)}',`)
 .replace(/uiStyle: [^,\n]+,/, `uiStyle: ${isFormal() ? 1 : 0},`)
 .replace(/bgGrid: [^,\n]+,/, `bgGrid: ${design.grid === '1'},`)
@@ -2033,6 +2087,13 @@ return head + rest.slice(0, open) + block + rest.slice(close);
 
 const inlineAssets = () => { const s = site(); return { logo: s.logo, banner: s.banner, qr: s.payQr, photos: arr(s.photos) }; };
 
+const setBar = () => {
+try {
+const bar = $('pvFrameEl').contentDocument.querySelector('.bar');
+const h = bar && getComputedStyle(bar).display !== 'none' ? bar.offsetHeight : 0;
+$('app').style.setProperty('--pvbar', `${h}px`);
+} catch {}
+};
 let pvTimer = 0, pvSeq = 0;
 const runPreview = async () => {
 if (!SUB) return;
@@ -2045,6 +2106,7 @@ const src = await getSource();
 let y = 0;
 try { y = frame.contentWindow.scrollY || 0; } catch {}
 frame.onload = () => {
+setBar();
 try { frame.contentWindow.scrollTo({ top: y, behavior: 'instant' }); } catch {}
 if (seq === pvSeq) load.classList.remove('show');
 };
@@ -2215,13 +2277,14 @@ clearTimeout(flash.t);
 flash.t = setTimeout(() => el.classList.remove('show'), 1700);
 };
 
+const contentDone = (s) => Boolean(s.about.trim()) && s.about !== (B.mission || '');
 const checklist = () => {
 const s = site(), C = AP().ck || {};
 const list = [
-{ k: 'info', ic: 'solar:document-text-bold-duotone', ok: Boolean(s.headline.trim() && s.about.trim()), go: 'content' },
+{ k: 'info', ic: 'solar:document-text-bold-duotone', ok: contentDone(s), go: 'content' },
 { k: 'look', ic: 'solar:pallete-2-bold-duotone', ok: designChanged(), go: 'brand' },
-{ k: 'media', ic: 'solar:gallery-bold-duotone', ok: Boolean(s.logo || arr(s.photos).length), go: 'photos' },
-{ k: 'services', ic: 'solar:bag-check-bold-duotone', ok: arr(s.services).some((x) => x.title?.trim()), go: 'services' },
+{ k: 'media', ic: 'solar:gallery-bold-duotone', ok: Boolean(String(s.logo).startsWith('data:') || arr(s.photos).length), go: 'photos' },
+{ k: 'services', ic: 'solar:bag-check-bold-duotone', ok: arr(s.services).some((x) => x.title?.trim() && x.title !== (AP().tplService || ['Sample service'])[0]), go: 'services' },
 { k: 'qr', ic: 'solar:qr-code-bold-duotone', ok: Boolean(s.payQr), go: 'payment' }
 ];
 if (S.questionsFormId) list.push({ k: 'questions', ic: 'solar:chat-round-dots-bold-duotone', ok: Boolean(SUB.questions), act: 'questions' });
@@ -2277,11 +2340,11 @@ const s = site();
 const row = (ok, title, note, go) => `<div class="${ok ? '' : 'miss'}">${icon(ok ? 'solar:check-circle-bold' : 'solar:danger-triangle-bold')}<b>${esc(title)}</b><small>${esc(note)}</small>${!ok && go ? `<button type="button" class="btn sm ghost" data-go="${go}">${esc(AP().add || 'Add')}</button>` : ''}</div>`;
 const n = arr(s.services).filter((x) => x.title?.trim()).length;
 $('bdList').innerHTML =
-row(true, 'index.html', AP().bdSite || '') +
+row(true, AP().bdSite || 'Your YC Space', AP().bdSiteNote || '') +
 row(true, AP().secSeo || 'SEO', AP().seoRow || '') +
-row(Boolean(s.headline.trim() && s.about.trim()), AP().secContent || 'Content', s.about.trim() ? AP().bdIncluded : AP().bdMissing, 'content') +
+row(contentDone(s), AP().secContent || 'Content', contentDone(s) ? AP().bdIncluded : AP().bdMissing, 'content') +
 row(n > 0, AP().edServices || 'Services', String(n), 'services') +
-row(Boolean(s.logo), AP().uploadLogo || 'Logo', s.logo ? AP().bdIncluded : AP().bdMissing, 'brand') +
+row(String(s.logo).startsWith('data:'), AP().uploadLogo || 'Logo', String(s.logo).startsWith('data:') ? AP().bdIncluded : AP().bdMissing, 'brand') +
 row(arr(s.photos).length > 0, AP().edPhotos || 'Photos', String(arr(s.photos).length), 'photos') +
 row(Boolean(s.payQr), AP().uploadQr || 'Payment QR', s.payQr ? AP().bdIncluded : AP().bdMissing, 'payment');
 };
@@ -2293,7 +2356,7 @@ $('apLogo').innerHTML = s.logo ? `<img src="${esc(s.logo)}" alt="">` : esc((B.na
 $('apName').textContent = B.name || '';
 $('apSub').textContent = `${B.brand || ''} ${AP().dashboard || 'dashboard'}`.trim();
 const pill = $('dsPill');
-pill.textContent = due ? AP().dueTitle : AP().paidTitle;
+pill.innerHTML = `${icon('solar:wallet-bold')}${esc(due ? (AP().dueShort || 'Balance due') : (AP().paidShort || 'Paid'))}`;
 pill.classList.toggle('due', due);
 if (!$('payPop').hidden) renderPay();
 document.title = `${AP().title || 'Dashboard'} | ${B.brand || ''}`;
@@ -2302,7 +2365,7 @@ document.title = `${AP().title || 'Dashboard'} | ${B.brand || ''}`;
 const renderChips = () => {
 const s = site();
 const set = (id, ok, text) => { const el = document.querySelector(`[data-st="${id}"]`); if (el) { el.textContent = text; el.classList.toggle('ok', ok); } };
-set('content', Boolean(s.headline.trim() && s.about.trim()), s.headline.trim() && s.about.trim() ? AP().chipDone : AP().chipTodo);
+set('content', contentDone(s), contentDone(s) ? AP().chipDone : AP().chipTodo);
 set('contact', Boolean(s.phone || s.email), s.phone || s.email ? AP().chipDone : AP().chipTodo);
 set('services', arr(s.services).length > 0, String(arr(s.services).length));
 set('photos', arr(s.photos).length > 0, `${arr(s.photos).length}/6`);
@@ -2495,15 +2558,13 @@ ensureEditor();
 renderApp();
 runPreview();
 safe(renderCta);
-if (!SUB.onboarded && !SUB.builtAt && !obStarted) { obStarted = true; startGuide(); }
+if (!SUB.onboarded && !obStarted) { obStarted = true; startGuide(); }
 if (SUB.builtAt && SUB.dirty) queueSync();
 };
 
 const openDash = () => {
 if (!SUB) return;
-paintLook(design);
-showDash();
-window.scrollTo(0, 0);
+crossfade(() => { paintLook(design); showDash(); });
 };
 
 const askHome = () => {
@@ -2517,6 +2578,20 @@ yes.disabled = false;
 $('hmModal').hidden = false;
 };
 
+const crossfade = async (fn) => {
+const body = document.body;
+body.style.transition = 'opacity .3s ease';
+body.style.opacity = '0';
+await wait(320);
+fn();
+window.scrollTo(0, 0);
+await wait(40);
+body.style.opacity = '1';
+await wait(340);
+body.style.transition = '';
+body.style.opacity = '';
+};
+
 const leaveEditor = async () => {
 const yes = $('hmModal').querySelector('[data-hm=yes]');
 yes.disabled = true;
@@ -2527,13 +2602,7 @@ while (syncState === 'syncing' && Date.now() < limit) await wait(200);
 if (SUB.dirty || syncState !== 'ok') await pushSite(true);
 }
 togglePay(false);
-$('app').classList.add('out');
-await wait(320);
-$('hmModal').hidden = true;
-goHome();
-$('app').classList.remove('out');
-document.body.classList.add('fadein');
-setTimeout(() => document.body.classList.remove('fadein'), 700);
+await crossfade(() => { $('hmModal').hidden = true; goHome(); });
 };
 
 const goHome = () => {
@@ -2550,6 +2619,7 @@ if (SPACE) return;
 onDesign = () => { if (SUB && editorReady) { renderTop(); refreshPreview(); touch(); } };
 addEventListener('online', () => { if (SUB?.builtAt && SUB.dirty) queueSync(); else paintSync(); });
 addEventListener('offline', paintSync);
+addEventListener('resize', () => setTimeout(setBar, 300));
 $('dsSync').addEventListener('click', () => { if (SUB && (!SUB.builtAt || syncState === 'error' || SUB.dirty)) pushSite(false); });
 $('apHome').innerHTML = icon('solar:arrow-left-linear');
 $('apHome').setAttribute('aria-label', AP().home || 'Home');
@@ -2574,6 +2644,8 @@ $('pvBar').addEventListener('click', (e) => {
 const b = e.target.closest('[data-w]');
 if (!b) return;
 $('pvFrame').classList.toggle('wide', b.dataset.w === 'wide');
+$('pvFrame').parentElement.classList.toggle('wide-on', b.dataset.w === 'wide');
+setTimeout(setBar, 400);
 $('pvBar').querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
 });
 $('dsBuild').addEventListener('click', requestBuild);
@@ -2759,7 +2831,7 @@ onQuestionsSubmitted();
 };
 
 const STUDIO_KEY = 'yc-studio';
-const BASE = { name: B.name || '', tagline: B.tagline || '', theme: String(S.theme), uiStyle: String(S.uiStyle), bgMode: S.bgMode, grid: S.bgGrid ? '1' : '0', btn: ['square', 'outline'].includes(S.btn) ? S.btn : 'round' };
+const BASE = { name: B.name || '', tagline: B.tagline || '', theme: String(S.theme), uiStyle: String(S.uiStyle), bgMode: S.bgMode, grid: S.bgGrid ? '1' : '0', btn: ['square', 'outline'].includes(S.btn) ? S.btn : 'round', fx: ['none', 'bounce', 'shine'].includes(S.fx) ? S.fx : 'shine' };
 const design = { ...BASE };
 const ST = B.studio || {};
 const isFormal = () => /^(1|formal|true)$/i.test(design.uiStyle);
@@ -2783,6 +2855,7 @@ S.uiStyle = d.uiStyle;
 S.bgMode = d.bgMode;
 S.bgGrid = d.grid === '1';
 S.btn = d.btn;
+S.fx = d.fx;
 B.name = d.name.trim() || BASE.name;
 B.tagline = d.tagline.trim() || BASE.tagline;
 PALETTE = resolvePalette();
@@ -2816,7 +2889,8 @@ swatches.map((k) => `<button type="button" data-t="${k}" aria-label="${k}" style
 `<div class="lbl">${esc(ST.styleLabel || 'Style')}</div>${seg('style', [['1', ST.formal || 'Formal'], ['0', ST.casual || 'Casual']])}` +
 `<div class="lbl">${esc(ST.motionLabel || 'Background')}</div>${seg('motion', [['dynamic', ST.moving || 'Moving'], ['plain', ST.still || 'Still']])}` +
 `<div class="lbl">${esc(ST.gridLabel || 'Grid')}</div>${seg('grid', [['1', ST.on || 'On'], ['0', ST.off || 'Off']])}` +
-`<div class="lbl">${esc(ST.btnLabel || 'Buttons')}</div>${seg('btn', [['round', ST.btnRound || 'Rounded'], ['square', ST.btnSquare || 'Square'], ['outline', ST.btnOutline || 'Outline']])}`;
+`<div class="lbl">${esc(ST.btnLabel || 'Buttons')}</div>${seg('btn', [['round', ST.btnRound || 'Rounded'], ['square', ST.btnSquare || 'Square'], ['outline', ST.btnOutline || 'Outline']])}` +
+`<div class="lbl">${esc(ST.fxLabel || 'Button effect')}</div>${seg('fx', [['none', ST.fxNone || 'None'], ['bounce', ST.fxBounce || 'Bounce'], ['shine', ST.fxShine || 'Shine']])}`;
 const q = (sel) => host.querySelector(sel);
 
 const sync = () => {
@@ -2827,6 +2901,7 @@ q('[data-r="style"]').querySelectorAll('button').forEach((b) => b.setAttribute('
 q('[data-r="motion"]').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === (design.bgMode === 'plain' ? 'plain' : 'dynamic'))));
 q('[data-r="grid"]').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === design.grid)));
 q('[data-r="btn"]').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === design.btn)));
+q('[data-r="fx"]').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === design.fx)));
 host.querySelectorAll('[data-k]').forEach((i) => { if (i.value !== design[i.dataset.k]) i.value = design[i.dataset.k]; });
 };
 
@@ -2851,7 +2926,9 @@ if (mo) return change({ bgMode: mo.dataset.v });
 const gr = e.target.closest('[data-r="grid"] [data-v]');
 if (gr) return change({ grid: gr.dataset.v });
 const bt = e.target.closest('[data-r="btn"] [data-v]');
-if (bt) change({ btn: bt.dataset.v });
+if (bt) return change({ btn: bt.dataset.v });
+const fx = e.target.closest('[data-r="fx"] [data-v]');
+if (fx) change({ fx: fx.dataset.v });
 });
 syncers.push(sync);
 sync();
@@ -3090,6 +3167,7 @@ safe(renderOffers);
 safe(renderQr);
 safe(renderArticle);
 safe(renderPolish);
+safe(renderBands);
 safe(renderCta);
 safe(renderFooter);
 safe(renderPartners);
