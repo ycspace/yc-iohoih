@@ -6,7 +6,7 @@
     "uiStyle": "0",
     "bgMode": "dynamic",
     "grid": "1",
-    "btn": "square",
+    "btn": "round",
     "fx": "shine"
   },
   "customer": {
