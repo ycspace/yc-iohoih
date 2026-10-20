@@ -22,12 +22,7 @@
       "href": "mailto:sample@duck.com"
     }
   ],
-  "pay": {
-    "name": "",
-    "number": "",
-    "note": "",
-    "qr": ""
-  },
+  "ctaText": "",
   "article": {
     "title": "YanC Solutions: Elevate for the bright future",
     "paras": [
