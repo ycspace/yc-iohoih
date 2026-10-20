@@ -24,5 +24,12 @@
   "manual": true,
   "meeting": "Booked",
   "questions": false,
+  "payment": {
+    "method": "",
+    "number": "",
+    "note": "",
+    "qr": "",
+    "forYcPay": true
+  },
   "requestedAt": "2026-10-14T10:34:30.708Z"
 }
