@@ -415,7 +415,7 @@ html.dash #app{animation:homein .5s ease}
 html.paid:not(.dash) #openEd{display:flex;position:fixed;right:16px;bottom:16px;z-index:70;width:auto;margin:0;min-height:50px;padding:0 22px;border-radius:28px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
 html.paid:not(.dash) #services,html.paid:not(.dash) #try,html.paid:not(.dash) .tabs a[href="#services"]{display:none}
 #app{position:relative;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
-.ds-top{display:flex;align-items:center;gap:10px;padding:10px 14px;flex-shrink:0;background:color-mix(in srgb,var(--bg) 78%,transparent);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);position:relative;z-index:5}
+.ds-top{display:flex;align-items:center;gap:10px;padding:10px 14px;flex-shrink:0;background:color-mix(in srgb,var(--bg) 78%,transparent);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-bottom:0px solid var(--line);position:relative;z-index:5}
 .ap-logo{width:38px;height:38px;border-radius:var(--r-sm);display:grid;place-items:center;font-weight:800;background:var(--ac);color:var(--on);flex-shrink:0;overflow:hidden}
 .ap-logo img{width:100%;height:100%;object-fit:cover}
 .ap-who{min-width:0;flex:1}
@@ -427,7 +427,7 @@ html.paid:not(.dash) #services,html.paid:not(.dash) #try,html.paid:not(.dash) .t
 .pv-bar button[aria-pressed="true"]{background:var(--ac);color:var(--on)}
 .ds-body{flex:1;min-height:0;display:flex;flex-direction:column}
 .ds-stage{height:50dvh;flex-shrink:0;padding:10px;background:color-mix(in srgb,var(--bg) 45%,transparent);display:flex;justify-content:center}
-.ds-panel{flex:1;min-height:0;overflow-y:auto;padding:4px 14px 40px;background:color-mix(in srgb,var(--bg) 84%,transparent);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-top:1px solid var(--line)}
+.ds-panel{flex:1;min-height:0;overflow-y:auto;padding:4px 14px 76px;background:color-mix(in srgb,var(--bg) 84%,transparent);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-top:0px solid var(--line)}
 .pv-frame{position:relative;width:100%;max-width:390px;height:100%;max-height:900px;border-radius:28px;background:var(--bg);border:0px solid color-mix(in srgb,var(--text) 16%,transparent);overflow:hidden;transition:max-width .3s}
 .pv-frame.wide{max-width:100%;max-height:none;border-radius:0px;border-width:0px}
 .pv-frame iframe{display:block;width:100%;height:100%;border:0;background:var(--bg)}
@@ -455,7 +455,7 @@ html.paid:not(.dash) #services,html.paid:not(.dash) #try,html.paid:not(.dash) .t
 .ob-dots{display:flex;gap:4px;margin-top:12px}
 .ob-dots i{flex:1;height:4px;border-radius:4px;background:var(--line)}
 .ob-dots i.on{background:var(--ac)}
-.ob-foot{position:sticky;bottom:0;z-index:3;display:flex;gap:8px;align-items:center;padding:12px 2px;margin-top:12px;background:color-mix(in srgb,var(--bg) 94%,transparent);border-top:1px solid var(--line)}
+.ob-foot{position:sticky;bottom:0;z-index:3;display:flex;gap:8px;align-items:center;padding:12px 2px;margin-top:12px;background:color-mix(in srgb,var(--bg) 94%,transparent);border-top:0px solid var(--line)}
 .ob-sp{flex:1}
 .ds-back{width:40px;height:40px;flex-shrink:0}
 #app{transition:opacity .3s}
@@ -463,17 +463,27 @@ html.paid:not(.dash) #services,html.paid:not(.dash) #try,html.paid:not(.dash) .t
 body.fadein main.wrap{animation:homein .6s ease}
 @keyframes homein{from{opacity:0}to{opacity:1}}
 .ds-stage{position:relative}
-.ds-stage.wide-on .sync{bottom:calc(var(--pvbar,0px) + 14px)}
 .ds-pill{position:absolute;right:12px;bottom:calc(var(--pvbar,0px) + 12px);z-index:6;display:flex;align-items:center;gap:6px;padding:9px 16px;border-radius:var(--r-pill);font-size:.82rem;font-weight:800;background:var(--ac);color:var(--on);border:0;box-shadow:0 6px 20px rgba(0,0,0,.3);white-space:nowrap}
 .ds-pill iconify-icon{font-size:18px}
 .ds-pill.due{background:#f59e0b;color:#1a1200}
-.pay-pop{position:absolute;right:12px;bottom:calc(var(--pvbar,0px) + 60px);z-index:7;width:calc(100% - 24px);max-width:340px;max-height:calc(100% - var(--pvbar,0px) - 80px);overflow-y:auto;padding:16px;border-radius:var(--radius);background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:0 12px 40px rgba(0,0,0,.35);border:1px solid var(--line)}
+.pay-pop{position:absolute;right:12px;bottom:calc(var(--pvbar,0px) + 60px);z-index:7;width:calc(100% - 24px);max-width:340px;max-height:calc(100% - var(--pvbar,0px) - 80px);overflow-y:auto;padding:16px;border-radius:var(--radius);background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:0 12px 40px rgba(0,0,0,.35);border:0px solid var(--line)}
 .pay-pop .ov-top{margin-bottom:12px}
 .pay-pop .ov-grid{margin-top:12px}
-.sync{position:absolute;left:14px;bottom:14px;z-index:6;display:flex;flex-direction:column;align-items:flex-start;gap:6px;cursor:pointer}
+.sync{position:fixed;left:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 10px);z-index:60;display:flex;flex-direction:row;align-items:center;gap:6px;cursor:pointer}
 .sy{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:var(--r-pill);background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 4px 18px rgba(0,0,0,.25);font-size:.72rem;line-height:1.1;white-space:nowrap}
+.sp-list{display:grid;gap:10px}
+.sp-card{display:flex;align-items:center;gap:12px;padding:12px;border-radius:var(--r-md,12px);background:color-mix(in srgb,var(--text) 6%,transparent);border:0px solid var(--line)}
+.sp-card.on{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 12%,transparent)}
+.sp-card iconify-icon{font-size:30px;color:var(--ac);flex-shrink:0}
+.sp-t{flex:1;min-width:0}
+.sp-t b{display:block;font-size:.92rem}
+.sp-t small{display:block;color:var(--muted);font-size:.76rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sp-act{display:flex;gap:6px;flex-shrink:0}
+.sp-act .btn{margin:0;width:auto;min-height:34px;padding:0 14px}
+.sp-new{width:100%;margin:0;border-style:dashed}
+.sp-note{color:var(--muted);font-size:.78rem;margin-top:8px}
 .hm{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.hm-card{width:100%;max-width:380px;padding:24px;border-radius:var(--radius);background:var(--bg);border:1px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.hm-card{width:100%;max-width:380px;padding:24px;border-radius:var(--radius);background:var(--bg);border:0px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.4)}
 .hm-card h3{font-size:1.2rem;letter-spacing:-.02em;margin-bottom:6px}
 .hm-card p{color:var(--muted);font-size:.92rem}
 .hm-act{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
@@ -503,7 +513,7 @@ body.fadein main.wrap{animation:homein .6s ease}
 .pol-val h3{font-size:1.05rem;margin-bottom:4px}
 .pol-val>p{font-size:.92rem;color:var(--muted)}
 .pol-rows{list-style:none;margin:14px 0}
-.pol-rows li{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.pol-rows li{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:0px solid var(--line);font-size:.9rem}
 .pol-rows li:last-child{border-bottom:0}
 .pol-rows iconify-icon{color:var(--ac);font-size:20px;flex-shrink:0}
 .pol-rows b{margin-left:auto;color:var(--ac);font-size:.78rem;white-space:nowrap}
@@ -511,9 +521,18 @@ body.fadein main.wrap{animation:homein .6s ease}
 html:not(.space) #article{display:none!important}
 .box p+p{margin-top:10px}
 .ds-panel .me-list{grid-template-columns:1fr!important}
-.ds-panel .ed-g{border-radius:0;background:transparent;border-bottom:1px solid var(--line)}
-.ds-panel .ed-g>summary{padding:14px 2px;font-size:.92rem}
-.ds-panel .ed-b{padding:2px 2px 16px}
+.ds-panel .ed-g{border-radius:var(--radius);background:var(--card);border:0;margin-bottom:10px}
+.ds-panel .ed-g>summary{padding:14px;font-size:.92rem}
+.ds-panel .ed-b{padding:2px 14px 16px}
+[data-style="formal"] .ds-panel .ed-g>summary,[data-style="formal"] .ap-who b{text-transform:uppercase;letter-spacing:.06em;font-size:.8rem}
+[data-style="formal"] .sp-t b,[data-style="formal"] .ob-bar b{letter-spacing:.04em}
+.pv-frame{border-radius:var(--r-ban)}
+.pv-frame.wide{border-radius:0}
+:root{--r-build:28px}
+[data-style="formal"]{--r-build:10px}
+#dsBuild{border-radius:var(--r-build)}
+[data-btn="square"] #dsBuild{border-radius:4px}
+.sp-card{border-radius:var(--r-sm)}
 .ds-panel .ov-hero{padding:14px;gap:12px}
 .ds-panel .ov-ic{width:46px;height:46px;font-size:26px}
 .ds-panel .ov-top h2{font-size:1.1rem}
@@ -524,7 +543,6 @@ html:not(.space) #article{display:none!important}
 html.space #polish,html.space #gaps,html.space #journey,html.space #compare,html.space #sample,html.space #workflow,html.space #try,html.space #setup,html.space #included,html.space #pay,html.space #reviews,html.space #partners,html.space #studio,html.space #app,html.space #flow,html.space #qm,html.space #demoTag{display:none!important}
 html.space .tabs a[href="#reviews"]{display:none}
 @media (orientation:portrait){
-.sync{bottom:calc(var(--pvbar,0px) + 14px)}
 .pv-bar{display:none}
 .ap-who small{display:none}
 .ds-top{gap:8px;padding:8px 10px}
@@ -532,7 +550,7 @@ html.space .tabs a[href="#reviews"]{display:none}
 @media (orientation:landscape){
 .ds-body{flex-direction:row}
 .ds-stage{flex:1;min-width:0;height:auto;padding:0px}
-.ds-panel{flex:0 0 380px;width:380px;border-top:0;border-left:1px solid var(--line);padding:4px 16px 48px}
+.ds-panel{flex:0 0 380px;width:380px;border-top:0;border-left:0px solid var(--line);padding:4px 16px 48px}
 }
 .bd-list{display:grid;gap:8px;margin:12px 0}
 .bd-list div{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:var(--r-sm);background:var(--card);font-size:.9rem}
@@ -751,7 +769,8 @@ html.space .bar .cta{display:flex}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
-</head>
+<style>@keyframes _spin_1nqjn_1{0%{transform:rotate(0)}to{transform:rotate(360deg)}}@keyframes _wave_1nqjn_1{0%{transform:rotate(0)}50%{transform:rotate(20deg)}to{transform:rotate(0)}}@keyframes _heartBeat_1nqjn_1{0%{transform:scale(1)}50%{transform:scale(1.08)}to{transform:scale(1)}}@keyframes _flash_1nqjn_1{0%,50%,to{opacity:1}25%,75%{opacity:.2}}@keyframes _bounce_1nqjn_1{0%,20%,53%,to{transform:translate(0,0)}40%,43%{transform:translateY(-30px)scaleY(1.1)}70%{transform:translateY(-15px)scaleY(1.05)}80%{transform:translate(0,0)scaleY(.95)}90%{transform:translateY(-4px)scaleY(1.02)}}@keyframes _rubberBand_1nqjn_1{0%{transform:scale(1)}30%{transform:scale(1.25,.75)}40%{transform:scale(.75,1.25)}50%{transform:scale(1.15,.85)}65%{transform:scale(.95,1.05)}75%{transform:scale(1.05,.95)}to{transform:scale(1)}}@keyframes _headShake_1nqjn_1{0%{transform:translate(0)}6.5%{transform:translate(-6px)rotateY(-9deg)}18.5%{transform:translate(5px)rotateY(7deg)}31.5%{transform:translate(-3px)rotateY(-5deg)}43.5%{transform:translate(2px)rotateY(3deg)}50%{transform:translate(0)}}@keyframes _tada_1nqjn_1{0%{transform:scale(1)}10%,20%{transform:scale3d(.9,.9,.9)rotate(-3deg)}30%,50%,70%,90%{transform:scale3d(1.1,1.1,1.1)rotate(3deg)}40%,60%,80%{transform:scale3d(1.1,1.1,1.1)rotate(-3deg)}to{transform:scale(1)}}._overlay_1nqjn_157{z-index:1000000006;background-color:#0f0f0f99;justify-content:center;align-items:center;display:flex;position:fixed;inset:0}._layoutDefault_1nqjn_170{z-index:2147483000;opacity:0;background-color:#0000;border-radius:5px;width:auto;max-width:95vw;height:auto;display:flex;position:fixed;bottom:20px;right:20px;box-shadow:0 0 0 1px #0f0f0f0d,0 3px 6px #0f0f0f1a,0 9px 24px #0f0f0f33}._layoutModal_1nqjn_188{z-index:2147483000;opacity:0;background-color:#0000;border-radius:5px;width:700px;max-width:95vw;height:auto;display:flex;position:relative;box-shadow:0 0 0 1px #0f0f0f0d,0 3px 6px #0f0f0f1a,0 9px 24px #0f0f0f33}._popupContainer_1nqjn_204{border-radius:5px;width:100%;display:flex;overflow-y:auto}._popupContainer_1nqjn_204 iframe{border-radius:5px;max-height:95vh}._loadingIndicator_1nqjn_216{z-index:2147483000;color:#444;background-color:#f5f5f5;border-radius:50%;justify-content:center;align-items:center;width:50px;height:50px;display:inline-flex;position:absolute}._loadingIndicatorNoOverlay_1nqjn_229{position:fixed;bottom:10px;right:10px}._loadingIndicator_1nqjn_216 svg{width:20px;height:20px;animation:1.618s linear infinite _spin_1nqjn_1}._emoji_1nqjn_241{font-size:42px;line-height:1;display:inline-block;position:absolute;top:-21px;left:-21px}._animate__wave_1nqjn_250{animation:1s ease-in-out 20 _wave_1nqjn_1}._animate__heart-beat_1nqjn_254{animation:1.3s ease-in-out 20 _heartBeat_1nqjn_1}._animate__flash_1nqjn_258{animation:2.5s 20 _flash_1nqjn_1}._animate__bounce_1nqjn_262{transform-origin:bottom;animation:1.5s 20 _bounce_1nqjn_1}._animate__rubber-band_1nqjn_267{animation:1.5s 20 _rubberBand_1nqjn_1}._animate__head-shake_1nqjn_271{animation:1.5s ease-in-out 20 _headShake_1nqjn_1}._animate__tada_1nqjn_275{animation:1.5s 20 _tada_1nqjn_1}._animate__spin_1nqjn_279{animation:1.618s linear 20 _spin_1nqjn_1}@media (height<=1000px){._popupContainer_1nqjn_204 iframe{max-height:85vh}}@media (width<=576px){._popupContainer_1nqjn_204 iframe{max-height:70vh}._layoutDefault_1nqjn_170,._layoutModal_1nqjn_188{max-width:calc(100% - 40px)}}
+/*$vite$:1*/</style></head>
 <body>
 
 <main class="wrap">
@@ -843,11 +862,6 @@ html.space .bar .cta{display:flex}
 <div id="offerList"></div>
 </section>
 
-<section id="qr" hidden="">
-<h2 id="qrTitle"></h2>
-<div id="qrBody"></div>
-</section>
-
 <section id="reviews">
 <h2>Reviews</h2>
 <p class="lead muted" id="themesLead"></p>
@@ -915,7 +929,7 @@ html.space .bar .cta{display:flex}
 </div>
 
 <div id="app">
-<header class="ds-top"><button type="button" class="icon-btn ds-back" id="apHome"></button><div class="ap-logo" id="apLogo"></div><div class="ap-who"><b id="apName"></b><small id="apSub"></small></div><div class="pv-bar" id="pvBar"></div><button type="button" class="btn sm fx ds-build" id="dsBuild"></button></header>
+<header class="ds-top"><button type="button" class="icon-btn ds-back" id="apHome"></button><div class="ap-logo" id="apLogo"></div><div class="ap-who"><b id="apName"></b><small id="apSub"></small></div><div class="pv-bar" id="pvBar"></div><button type="button" class="btn sm ds-build" id="dsBuild"></button></header>
 <div class="ds-body">
 <div class="ds-stage"><div class="pv-frame" id="pvFrame"><iframe id="pvFrameEl" title="Preview"></iframe><div class="pv-load" id="pvLoad" role="status"></div><button type="button" class="ds-pill" id="dsPill" aria-haspopup="dialog" aria-expanded="false"></button><div class="pay-pop" id="payPop" hidden="" role="dialog"></div></div><div class="sync" id="dsSync" role="button" tabindex="0"></div></div>
 <aside class="ds-panel" id="dsPanel" aria-label="Editor"></aside>
@@ -1068,7 +1082,7 @@ onPaid(info) {}
 </script>
 
 <script>
-window.YC_SPACE = {"name":"YanC Solutions","tagline":"Elevate for the bright future","headline":"Sample","oneLiner":"YC Space connects discovery, trust, services, booking, payment, payment proof, notifications, and reviews in one customer destination.","about":"This is a sample info, Helping young entrepreneur in brand growth.","visit":"8PM","logo":"assets/logo.jpg","banner":"","gallery":[],"services":[{"name":"Sample service","desc":"Replace this with something you offer.","priceLabel":"₱500"}],"contact":[{"icon":"solar:letter-bold-duotone","label":"sample@duck.com","href":"mailto:sample@duck.com"}],"pay":{"name":"","number":"","note":"","qr":""},"article":{"title":"YanC Solutions: Elevate for the bright future","paras":["This is a sample info, Helping young entrepreneur in brand growth.","YanC Solutions offers Sample service.","Sample service is ₱500, Replace this with something you offer..","You can find YanC Solutions at 8PM.","To order or ask a question, contact YanC Solutions at sample@duck.com."],"generated":true}};
+window.YC_SPACE = {"name":"YanC Solutions","tagline":"Elevate for the bright future","headline":"Sample","oneLiner":"YC Space connects discovery, trust, services, booking, payment, payment proof, notifications, and reviews in one customer destination.","about":"This is a sample info, Helping young entrepreneur in brand growth.","visit":"8PM","logo":"assets/logo.jpg","banner":"","gallery":[],"services":[{"name":"Sample service","desc":"Replace this with something you offer.","priceLabel":"₱500"}],"contact":[{"icon":"solar:letter-bold-duotone","label":"sample@duck.com","href":"mailto:sample@duck.com"}],"ctaText":"","article":{"title":"YanC Solutions: Elevate for the bright future","paras":["This is a sample info, Helping young entrepreneur in brand growth.","YanC Solutions offers Sample service.","Sample service is ₱500, Replace this with something you offer..","You can find YanC Solutions at 8PM.","To order or ask a question, contact YanC Solutions at sample@duck.com."],"generated":true}};
 window.YC_BRAND = {"spaceLabels":{"about":"About","visit":"Visit us","pay":"How to pay","call":"Call us","email":"Email us","message":"Message us"}};
 </script>
 
@@ -1126,7 +1140,7 @@ ini: r.ini || String(r.name || '?').split(/\s+/).slice(0, 2).map((w) => w[0]).jo
 const money = (n) => `${S.currency}${Number(n || 0).toLocaleString(S.locale)}`;
 const priceText = (o) => o.priceLabel !== undefined ? o.priceLabel : `${o.from ? 'From ' : ''}${money(o.price)}${o.per ? ` / ${o.per}` : ''}`;
 
-const SECTIONS = ['home', 'gaps', 'journey', 'compare', 'sample', 'workflow', 'try', 'setup', 'included', 'polish', 'pay', 'services', 'qr', 'reviews', 'gallery', 'partners', 'about', 'article', 'contact'];
+const SECTIONS = ['home', 'gaps', 'journey', 'compare', 'sample', 'workflow', 'try', 'setup', 'included', 'polish', 'pay', 'services', 'reviews', 'gallery', 'partners', 'about', 'article', 'contact'];
 
 const ctaChoice = () => {
 const variants = arr(B.ctas);
@@ -1447,17 +1461,6 @@ sec.appendChild(b);
 });
 };
 
-const renderQr = () => {
-if (!SPACE) return;
-const p = (B.spaceData || {}).pay || {};
-const L = B.spaceLabels || {};
-const has = Boolean(p.qr || p.name || p.number || p.note);
-$('qr').hidden = !has;
-if (!has) return;
-fill('qrTitle', L.pay || 'How to pay');
-$('qrBody').innerHTML = `<div class="card box qr-card">${p.qr ? `<img src="${esc(p.qr)}" alt="${esc(p.name || 'Payment QR')}">` : ''}<div>${p.name ? `<h3>${esc(p.name)}</h3>` : ''}${p.number ? `<p class="qr-n">${esc(p.number)}</p>` : ''}${p.note ? `<p class="muted">${esc(p.note)}</p>` : ''}</div></div>`;
-};
-
 const renderOffers = () => {
 if (SPACE) $('services').hidden = !offers.length;
 fill('offerNote', B.offerNote);
@@ -1494,7 +1497,8 @@ if (SPACE) {
 const c = arr(B.contact).find((x) => /^(tel|mailto):/.test(x.href || '')) || arr(B.contact)[0];
 if (!c) { $('cta').hidden = true; return; }
 const L = B.spaceLabels || {};
-const label = /^tel:/.test(c.href) ? (L.call || 'Call us') : /^mailto:/.test(c.href) ? (L.email || 'Email us') : (L.message || 'Message us');
+const own = String((B.spaceData || {}).ctaText || '').trim();
+const label = own || (/^tel:/.test(c.href) ? (L.call || 'Call us') : /^mailto:/.test(c.href) ? (L.email || 'Email us') : (L.message || 'Message us'));
 $('cta').innerHTML = `${esc(label)} ${icon('solar:arrow-right-linear')}`;
 $('cta').hidden = false;
 $('cta').onclick = () => { if (S.preview) return; if (/^https?:/.test(c.href)) window.open(c.href, '_blank', 'noopener'); else location.href = c.href; };
@@ -1965,11 +1969,11 @@ return false;
 const templateSite = () => ({
 headline: B.headline || '', oneLiner: B.oneLiner || '', about: B.mission || '', phone: SUB?.customer?.phone || '', email: SUB?.customer?.email || '', address: '', hours: '',
 facebook: '', instagram: '', services: [{ title: (AP().tplService || ['Sample service'])[0], price: '500', text: (AP().tplService || ['', '', 'Replace this with something you offer.'])[2] }],
-photos: [], logo: B.logo || '', banner: B.banner || '', payName: '', payNumber: '', payNote: '', payQr: ''
+photos: [], logo: B.logo || '', banner: B.banner || '', payName: '', payNumber: '', payNote: '', payQr: '', ctaText: ''
 });
 const emptySite = () => ({
 headline: '', oneLiner: '', about: '', phone: SUB?.customer?.phone || '', email: SUB?.customer?.email || '', address: '', hours: '',
-facebook: '', instagram: '', services: [], photos: [], logo: '', banner: '', payName: '', payNumber: '', payNote: '', payQr: ''
+facebook: '', instagram: '', services: [], photos: [], logo: '', banner: '', payName: '', payNumber: '', payNote: '', payQr: '', ctaText: ''
 });
 const site = () => {
 SUB.site = { ...emptySite(), ...(SUB.site || {}) };
@@ -2042,7 +2046,7 @@ visit: [s.address.trim(), s.hours.trim()].filter(Boolean).join('\n'),
 logo: a.logo, banner: a.banner, gallery: a.photos,
 services: arr(s.services).filter((x) => x.title?.trim()).map((x) => ({ name: x.title.trim(), desc: (x.text || '').trim(), priceLabel: priceLabel(x.price) })),
 contact,
-pay: { name: s.payName.trim(), number: s.payNumber.trim(), note: s.payNote.trim(), qr: a.qr }
+ctaText: String(s.ctaText || '').trim().slice(0, 28)
 };
 out.article = makeArticle(out);
 return out;
@@ -2147,6 +2151,7 @@ path: 'request.json',
 text: JSON.stringify({
 design: { ...design }, customer: { ...SUB.customer }, plan: SUB.plan, price: SUB.price, paid: SUB.paidTotal, parts: SUB.parts,
 sessionId: pay.ref || '', doneId: pay.doneId || '', manual: Boolean(pay.manual), meeting: SUB.meeting, questions: SUB.questions,
+payment: { method: s.payName.trim(), number: s.payNumber.trim(), note: s.payNote.trim(), qr: qr, forYcPay: true },
 requestedAt: new Date(SUB.firstBuiltAt || Date.now()).toISOString()
 }, null, 2)
 }
@@ -2375,6 +2380,7 @@ set('payment', Boolean(s.payQr), s.payQr ? AP().chipDone : AP().chipTodo);
 const renderApp = () => {
 if (!SUB || !root.classList.contains('dash') || !editorReady) return;
 renderTop();
+renderSpaces();
 renderStatus();
 renderPublish();
 renderChips();
@@ -2437,6 +2443,7 @@ const field = (f, label, type) => `<div class="fi"><label>${esc(label)}</label><
 const area = (f, label, max) => `<div class="fi"><label>${esc(label)}</label><textarea data-f="${f}" maxlength="${max}" aria-label="${esc(label)}"></textarea></div>`;
 $('dsPanel').innerHTML = '<div class="ob-bar" id="obBar" hidden></div>' +
 group('status', 'solar:chart-2-bold-duotone', AP().secStatus, '<div id="dsStatus"></div>', true) +
+group('spaces', 'solar:folder-with-files-bold-duotone', AP().secSpaces, '<div id="spBody"></div>') +
 group('brand', 'solar:pallete-2-bold-duotone', AP().edBrand, '<div id="edDesigner"></div><div class="up" id="upLogo"></div><div class="up" id="upBanner"></div>') +
 group('content', 'solar:document-text-bold-duotone', AP().secContent,
 field('headline', AP().fHeadline) + area('oneLiner', AP().fOneLiner, 200) + area('about', AP().fAbout, 600) + field('address', AP().fAddress) + field('hours', AP().fHours)) +
@@ -2444,9 +2451,9 @@ group('services', 'solar:bag-check-bold-duotone', AP().edServices,
 `<div id="edServices"></div><button type="button" class="btn sm ghost" id="svAdd" data-act="addSv">${esc(AP().addService)}</button>`) +
 group('photos', 'solar:gallery-bold-duotone', AP().edPhotos, '<div id="upPhotos"></div>') +
 group('payment', 'solar:wallet-money-bold-duotone', AP().edPayment,
-field('payName', AP().fPayName) + field('payNumber', AP().fPayNumber) + field('payNote', AP().fPayNote) + '<div class="up" id="upQr"></div>') +
+`<p class="lead muted" style="margin-bottom:6px">${esc(AP().payPrivate)}</p>` + field('payName', AP().fPayName) + field('payNumber', AP().fPayNumber) + field('payNote', AP().fPayNote) + '<div class="up" id="upQr"></div>') +
 group('contact', 'solar:phone-calling-bold-duotone', AP().edContact,
-field('phone', AP().fPhone, 'tel') + field('email', AP().fEmail, 'email') + field('facebook', AP().fFacebook) + field('instagram', AP().fInstagram)) +
+`<p class="lead muted" style="margin-bottom:6px">${esc(AP().ctaHint)}</p>` + field('ctaText', AP().fCta) + field('phone', AP().fPhone, 'tel') + field('email', AP().fEmail, 'email') + field('facebook', AP().fFacebook) + field('instagram', AP().fInstagram)) +
 group('seo', 'solar:magic-stick-3-bold-duotone', AP().secSeo, '<div id="seoBody"></div>') +
 group('publish', 'solar:rocket-2-bold-duotone', AP().secPublish, `<p class="lead muted" style="margin-bottom:6px">${esc(AP().bdLead)}</p><div class="bd-list" id="bdList"></div><div class="me-build" id="apBuild"></div>`) +
 '<div class="ob-foot" id="obFoot" hidden></div>';
@@ -2511,7 +2518,7 @@ commit(true);
 };
 
 const OB_ORDER = ['status', 'brand', 'content', 'services', 'photos', 'payment', 'contact', 'seo', 'publish'];
-const OB_SCROLL = { seo: 'article', content: 'about', services: 'services', photos: 'gallery', payment: 'qr', contact: 'contact' };
+const OB_SCROLL = { seo: 'article', content: 'about', services: 'services', photos: 'gallery', payment: 'contact', contact: 'contact' };
 let ob = { on: false, i: 0 };
 
 const scrollPreview = (id) => {
@@ -2567,8 +2574,122 @@ if (!SUB) return;
 crossfade(() => { paintLook(design); showDash(); });
 };
 
+
+const SP_KEYS = ['site', 'seeded', 'build', 'builtAt', 'dirty', 'synced', 'firstBuiltAt'];
+const spaces = () => {
+if (!Array.isArray(SUB.spaces) || !SUB.spaces.length) SUB.spaces = [{ id: Date.now() }];
+if (typeof SUB.active !== 'number' || !SUB.spaces[SUB.active]) SUB.active = 0;
+return SUB.spaces;
+};
+const spaceTitle = (n) => String(AP().spName || 'Space {n}').replace('{n}', n + 1);
+const renderSpaces = () => {
+const host = $('spBody');
+if (!host || !SUB) return;
+const list = spaces(), A = AP();
+host.innerHTML = '<div class="sp-list">' + list.map((sp, n) => {
+const on = n === SUB.active;
+const src = on ? SUB : sp;
+const name = (on ? design.name : (sp.design || BASE).name) || BASE.name;
+const state = src.builtAt ? A.spSynced : A.spDraft;
+return `<div class="sp-card${on ? ' on' : ''}">${icon('solar:folder-with-files-bold-duotone')}<div class="sp-t"><b>${esc(spaceTitle(n))}</b><small>${esc(name)} | ${esc(state)}</small></div><div class="sp-act">` +
+(on ? `<span class="badge">${esc(A.spHere)}</span>` : `<button type="button" class="btn sm" data-sp="open" data-i="${n}">${esc(A.spOpen)}</button>`) +
+(list.length > 1 ? `<button type="button" class="btn sm ghost" data-sp="del" data-i="${n}">${esc(A.spDelete)}</button>` : '') + '</div></div>';
+}).join('') + '</div>' +
+(list.length < 2 ? `<button type="button" class="btn ghost sp-new" data-sp="new">${esc(A.spNew)}</button><p class="sp-note">${esc(A.spNewNote)}</p>` : `<p class="sp-note">${esc(A.spLimit)}</p>`);
+};
+
+const snapshotActive = () => {
+const sp = spaces()[SUB.active];
+SP_KEYS.forEach((k) => { sp[k] = SUB[k]; });
+sp.design = { ...design };
+};
+const refreshEditor = () => {
+const s = site();
+$('dsPanel').querySelectorAll('[data-f]').forEach((i) => { i.value = s[i.dataset.f] || ''; });
+paintMedia();
+paintServices();
+syncAll();
+renderSeo();
+renderSpaces();
+renderApp();
+runPreview();
+};
+const loadSpace = (i) => {
+const sp = SUB.spaces[i];
+const patch = { active: i, spaces: SUB.spaces };
+SP_KEYS.forEach((k) => { patch[k] = sp[k]; });
+saveSub(patch);
+Object.assign(design, BASE, sp.design || {});
+syncState = SUB.builtAt ? (SUB.dirty ? 'pending' : 'ok') : '';
+buildState = '';
+paintLook(design);
+paintPreview();
+try { localStorage.setItem(STUDIO_KEY, JSON.stringify(design)); } catch {}
+site();
+renderTop();
+refreshEditor();
+if (SUB.builtAt && SUB.dirty) queueSync();
+};
+let spBusy = false;
+const settle = async () => {
+clearTimeout(commitTimer);
+saveSub({ site: SUB.site });
+const limit = Date.now() + 20000;
+while (syncState === 'syncing' && Date.now() < limit) await wait(200);
+if (SUB.builtAt && SUB.dirty && navigator.onLine) { try { await pushSite(true); } catch {} }
+clearTimeout(syncTimer);
+};
+const switchSpace = async (i) => {
+if (spBusy || i === SUB.active || !spaces()[i]) return;
+spBusy = true;
+await settle();
+snapshotActive();
+loadSpace(i);
+spBusy = false;
+};
+const newSpace = async () => {
+if (spBusy || spaces().length >= 2) return;
+spBusy = true;
+await settle();
+snapshotActive();
+SUB.spaces.push({ id: Date.now(), design: { ...BASE } });
+loadSpace(SUB.spaces.length - 1);
+spBusy = false;
+};
+const removeSpace = (i) => {
+const list = spaces();
+if (list.length < 2 || !list[i]) return;
+if (i === SUB.active) {
+snapshotActive();
+const keep = i === 0 ? 1 : 0;
+const next = list.filter((_, n) => n !== i);
+SUB.spaces = next;
+loadSpace(next.indexOf(list[keep]));
+} else {
+snapshotActive();
+const cur = list[SUB.active];
+SUB.spaces = list.filter((_, n) => n !== i);
+saveSub({ spaces: SUB.spaces, active: SUB.spaces.indexOf(cur) });
+renderSpaces();
+}
+};
+let hmMode = '', hmIndex = -1;
+const askDelete = (i) => {
+const A = AP();
+hmMode = 'del';
+hmIndex = i;
+$('hmT').textContent = A.spDelTitle;
+$('hmP').textContent = A.spDelText;
+const no = $('hmModal').querySelector('[data-hm=no]'), yes = $('hmModal').querySelector('[data-hm=yes]');
+no.textContent = A.spDelNo;
+yes.textContent = A.spDelYes;
+yes.disabled = false;
+$('hmModal').hidden = false;
+};
+
 const askHome = () => {
 const A = AP();
+hmMode = '';
 $('hmT').textContent = A.hmTitle || 'Leave the editor?';
 $('hmP').textContent = (SUB?.builtAt ? A.hmBuilt : A.hmLocal) || '';
 const no = $('hmModal').querySelector('[data-hm=no]'), yes = $('hmModal').querySelector('[data-hm=yes]');
@@ -2627,7 +2748,12 @@ $('apHome').title = AP().home || 'Home';
 $('apHome').addEventListener('click', askHome);
 $('hmModal').addEventListener('click', (e) => {
 const b = e.target.closest('[data-hm]');
-if (b) { if (b.dataset.hm === 'yes') leaveEditor(); else $('hmModal').hidden = true; return; }
+if (b) {
+if (b.dataset.hm === 'yes') {
+if (hmMode === 'del') { $('hmModal').hidden = true; removeSpace(hmIndex); hmMode = ''; } else leaveEditor();
+} else $('hmModal').hidden = true;
+return;
+}
 if (e.target === $('hmModal')) $('hmModal').hidden = true;
 });
 $('dsPill').addEventListener('click', () => togglePay());
@@ -2650,6 +2776,14 @@ $('pvBar').querySelectorAll('button').forEach((x) => x.setAttribute('aria-presse
 });
 $('dsBuild').addEventListener('click', requestBuild);
 $('app').addEventListener('click', (e) => {
+const sp = e.target.closest('[data-sp]');
+if (sp) {
+const k = sp.dataset.sp, n = Number(sp.dataset.i);
+if (k === 'open') switchSpace(n);
+else if (k === 'new') newSpace();
+else if (k === 'del') askDelete(n);
+return;
+}
 const g = e.target.closest('[data-go]');
 if (g) { openGroup(g.dataset.go); return; }
 const a = e.target.closest('#dsStatus [data-act], #apBuild [data-act], #payPop [data-act]');
@@ -2922,7 +3056,7 @@ if (sw) return change({ theme: sw.dataset.t });
 const st = e.target.closest('[data-r="style"] [data-v]');
 if (st) return change({ uiStyle: st.dataset.v });
 const mo = e.target.closest('[data-r="motion"] [data-v]');
-if (mo) return change({ bgMode: mo.dataset.v });
+if (mo) return change(mo.dataset.v === 'plain' ? { bgMode: 'plain', grid: '0' } : { bgMode: mo.dataset.v });
 const gr = e.target.closest('[data-r="grid"] [data-v]');
 if (gr) return change({ grid: gr.dataset.v });
 const bt = e.target.closest('[data-r="btn"] [data-v]');
@@ -2956,6 +3090,7 @@ const saved = JSON.parse(localStorage.getItem(STUDIO_KEY) || 'null');
 if (saved && typeof saved === 'object') {
 Object.keys(BASE).forEach((k) => { if (typeof saved[k] === 'string') design[k] = saved[k]; });
 if (designChanged()) applyDesign();
+syncAll();
 }
 } catch {}
 mountDesigner($('stBody'));
@@ -3164,7 +3299,6 @@ safe(renderPositioning);
 safe(renderAbout);
 safe(renderSample);
 safe(renderOffers);
-safe(renderQr);
 safe(renderArticle);
 safe(renderPolish);
 safe(renderBands);
